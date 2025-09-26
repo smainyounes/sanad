@@ -81,6 +81,33 @@
         color: #555;
     }
 
+     /* Buttons */
+    .btn { transition: all 0.3s ease; border-radius: 50px; padding: 10px 25px;}
+    .btn-primary { font-weight: 700; }
+    .btn-primary:hover, .btn-secondary:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+    
+    /* Page Header */
+    .page-header { background-color: var(--light-bg); padding: 80px 0; text-align: center; }
+    .page-header h1 { font-size: 3rem; font-weight: 800; color: var(--primary-color); }
+    .page-header p { font-size: 1.2rem; color: #6c757d; max-width: 600px; margin: 15px auto 0; }
+
+    /* Filter Buttons */
+    .filter-buttons {
+        margin-bottom: 40px;
+    }
+    .filter-buttons .btn {
+        margin: 5px;
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        border-color: #ddd;
+        font-weight: 500;
+    }
+    .filter-buttons .btn.active {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+    }
+    
     /* Buttons */
     .btn-primary {
         background-color: var(--primary-color);
@@ -188,6 +215,38 @@
         font-weight: 500;
     }
 
+    /* Filter Buttons */
+    .filter-buttons {
+        margin-bottom: 40px;
+    }
+    .filter-buttons .btn {
+        margin: 5px;
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        border-color: #ddd;
+        font-weight: 500;
+    }
+    .filter-buttons .btn.active {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+    }
+
+    /* Specialists Section */
+    #specialists-grid { padding: 90px 0; }
+    .specialist-item {
+        transition: transform 0.3s ease, opacity 0.3s ease; /* For smooth filtering */
+    }
+    
+    .specialist-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+    .specialist-card img { height: 300px; object-fit: cover; }
+    .specialist-card .card-body { text-align: center; }
+    .specialist-card .specialization { color: var(--primary-color); font-weight: 500; }
+
+    /* Modal Customization */
+    .modal-header { background-color: var(--primary-color); color: white; }
+    .modal-header .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+    .modal-footer .form-text a { text-decoration: none; font-weight: 700; color: var(--primary-color); }
     /* How it Works Section */
     .how-it-works-step {
         position: relative;
