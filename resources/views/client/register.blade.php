@@ -139,7 +139,7 @@
                 <div class="card auth-card wow animate__fadeInRight">
                     <div class="auth-header">
                         <div class="auth-logo">
-                            <a href="index.html">سند</a>
+                            <a href="/">سند</a>
                         </div>
                         <h2>إنشاء حساب جديد</h2>
                         <p class="text-muted">انضم إلينا وابدأ رحلتك نحو التغيير.</p>
@@ -162,11 +162,11 @@
                                 <label for="registerConfirmPassword" class="form-label">تأكيد كلمة المرور</label>
                                 <input type="password" class="form-control" id="registerConfirmPassword" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">إنشاء الحساب</button>
+                            <a href="/" class="btn btn-primary w-100">إنشاء الحساب</a>
                         </form>
                     </div>
                     <div class="card-footer text-center bg-transparent border-0 pt-3">
-                        <small class="text-muted">هل لديك حساب بالفعل؟ <a href="login.html" class="fw-bold">سجل الدخول</a></small>
+                        <small class="text-muted">هل لديك حساب بالفعل؟ <a href="{{ route('login') }}" class="fw-bold">سجل الدخول</a></small>
                     </div>
                 </div>
             </div>

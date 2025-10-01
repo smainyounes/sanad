@@ -13,10 +13,10 @@
             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                 <h5>روابط سريعة</h5>
                 <ul class="list-unstyled p-0">
-                    <li><a href="#about">من نحن</a></li>
-                    <li><a href="#services">خدماتنا</a></li>
-                    <li><a href="#specialists">الأخصائيون</a></li>
-                    <li><a href="#">سياسة الخصوصية</a></li>
+                    <li><a href="{{ route('aboutus') }}">من نحن</a></li>
+                    <li><a href="{{ route('services') }}">خدماتنا</a></li>
+                    <li><a href="{{ route('specialists') }}">الأخصائيون</a></li>
+                    <li><a href="{{ route('privacy-policy') }}">سياسة الخصوصية</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-6">

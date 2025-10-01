@@ -23,11 +23,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h1 class="wow animate__animated animate__fadeInDown">سند+: دعم متكامل، رقمياً وحضورياً، نحو مستقبل أفضل</h1>
+                    <h1 class="wow animate__animated animate__fadeInDown">سند: دعم متكامل، رقمياً وحضورياً، نحو مستقبل أفضل</h1>
                     <p class="lead wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                         منصتنا ومركزنا الفيزيائي يقدمان معاً برامج متخصصة للتأهيل النفسي والاجتماعي والمهني للمراهقين، لنبني معاً رحلة نجاح متكاملة.
                     </p>
-                    <a href="#register" class="btn btn-primary btn-lg wow animate__animated animate__pulse" data-wow-delay="0.4s">سجّل مجاناً</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg wow animate__animated animate__pulse" data-wow-delay="0.4s">سجّل مجاناً</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-lg-6 ">
                         <h2 class="section-title text-center mb-4">من نحن؟</h2>
-                        <p class="lead">تأسست منصة ومركز <strong>سند+</strong> إيماناً بأهمية الدعم الشامل للشباب في أهم مراحل حياتهم. ندرك التحديات التي يواجهها المراهقون عند العودة للمجتمع.</p>
+                        <p class="lead">تأسست منصة ومركز <strong>سند</strong> إيماناً بأهمية الدعم الشامل للشباب في أهم مراحل حياتهم. ندرك التحديات التي يواجهها المراهقون عند العودة للمجتمع.</p>
                         <p>مهمتنا هي توفير مساحة آمنة ومحترفة، سواء <strong>عبر منصتنا الرقمية</strong> أو <strong>في مركزنا الفيزيائي</strong>، لتمنحهم الأدوات اللازمة للتعافي والنمو، والاندماج في المجتمع بثقة وإيجابية، ليكونوا أفراداً فاعلين ومستقلين.</p>
                     </div>
                 </div>
@@ -53,11 +53,11 @@
         <!-- 3. WHY SANAD+ -->
         <section id="why" class="bg-light">
             <div class="container text-center">
-                 <h2 class="section-title">لماذا سند+؟</h2>
+                 <h2 class="section-title">لماذا سند</h2>
                  <div class="row justify-content-center">
                      <div class="col-lg-8 wow animate__animated animate__fadeInUp">
                         <p class="lead">غالباً ما يجد الشباب أنفسهم وحيدين بعد مغادرة مؤسسات الرعاية، مع نقص حاد في الدعم النفسي المتخصص الذي يساعدهم على معالجة الماضي والتخطيط للمستقبل.</p>
-                        <p><strong>سند+</strong> يسد هذه الفجوة عبر ربطهم مباشرة مع نخبة من الأخصائيين النفسيين والاجتماعيين والمرشدين المهنيين، سواء من خلال <strong>الجلسات عن بعد</strong> المرنة، أو <strong>الزيارات الحضورية</strong> في مركزنا، في بيئة آمنة وسرية بالكامل تضمن لهم الحصول على الدعم الذي يستحقونه دون أي حواجز.</p>
+                        <p><strong>سند</strong> يسد هذه الفجوة عبر ربطهم مباشرة مع نخبة من الأخصائيين النفسيين والاجتماعيين والمرشدين المهنيين، سواء من خلال <strong>الجلسات عن بعد</strong> المرنة، أو <strong>الزيارات الحضورية</strong> في مركزنا، في بيئة آمنة وسرية بالكامل تضمن لهم الحصول على الدعم الذي يستحقونه دون أي حواجز.</p>
                      </div>
                  </div>
             </div>
@@ -172,7 +172,7 @@
         <!-- 7. ADVANTAGES -->
         <section id="advantages" class="bg-light">
              <div class="container text-center">
-                <h2 class="section-title">مميزات سند+</h2>
+                <h2 class="section-title">مميزات سند</h2>
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-3 wow animate__animated animate__zoomIn">
                         <div class="feature-box h-100">
@@ -252,7 +252,7 @@
                         <div class="testimonial-card text-center h-100 shadow-sm">
                             <i class="fas fa-quote-left quote-icon"></i>
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Avatar">
-                            <p>"لم أكن أعرف من أين أبدأ. سند+ أعطاني الأمل والأدوات لأبني حياتي من جديد. جلساتي في المركز كانت نقطة تحول."</p>
+                            <p>"لم أكن أعرف من أين أبدأ. سند أعطاني الأمل والأدوات لأبني حياتي من جديد. جلساتي في المركز كانت نقطة تحول."</p>
                             <div class="name">- خالد، 19 عاماً</div>
                         </div>
                     </div>
@@ -300,8 +300,8 @@
             <div class="container">
                 <div class="final-cta text-center wow animate__animated animate__zoomIn">
                     <h2>ابدأ رحلتك نحو التغيير الإيجابي</h2>
-                    <p class="lead my-4">سواء كنت تفضل الدعم الرقمي أو التجربة الحضورية في مركزنا، سند+ هنا ليكون رفيقك في كل خطوة. لا تتردد.</p>
-                    <a href="#" class="btn btn-secondary btn-lg">انضم إلى Sanad+ الآن</a>
+                    <p class="lead my-4">سواء كنت تفضل الدعم الرقمي أو التجربة الحضورية في مركزنا، سند هنا ليكون رفيقك في كل خطوة. لا تتردد.</p>
+                    <a href="#" class="btn btn-secondary btn-lg">انضم إلى Sanad الآن</a>
                 </div>
             </div>
         </section>

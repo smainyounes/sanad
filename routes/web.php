@@ -8,7 +8,7 @@ Route::get('/', function () {
 
 Route::get('/specialists', function () {
     return view('client.specialists');
-});
+})->name('specialists');
 
 Route::view('/login', 'client.login')->name('login');
 

@@ -137,7 +137,7 @@
                 <div class="card auth-card wow animate__fadeInRight">
                     <div class="auth-header">
                         <div class="auth-logo">
-                            <a href="index.html">سند</a>
+                            <a href="/">سند</a>
                         </div>
                         <h2>تسجيل الدخول</h2>
                         <p class="text-muted">أدخل بياناتك للمتابعة.</p>
@@ -155,11 +155,11 @@
                                 </div>
                                 <input type="password" class="form-control" id="loginPassword" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 mt-3">دخول</button>
+                            <a href="/" class="btn btn-primary w-100 mt-3">دخول</a>
                         </form>
                     </div>
                     <div class="card-footer text-center bg-transparent border-0 pt-3">
-                        <small class="text-muted">ليس لديك حساب؟ <a href="register.html" class="fw-bold">أنشئ حساباً جديداً</a></small>
+                        <small class="text-muted">ليس لديك حساب؟ <a href="{{ route('register') }}" class="fw-bold">أنشئ حساباً جديداً</a></small>
                     </div>
                 </div>
             </div>
