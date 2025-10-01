@@ -113,7 +113,7 @@
                             
                             <h2>8. الاتصال بنا</h2>
                             <p>
-                                إذا كان لديكم أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، فلا تترددوا في <a href="{{ route('contact') }}" class="fw-bold text-decoration-none" style="color: var(--primary-color);">التواصل معنا</a>.
+                                إذا كان لديكم أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، فلا تترددوا في <a href="{{ route('contactus') }}" class="fw-bold text-decoration-none" style="color: var(--primary-color);">التواصل معنا</a>.
                             </p>
                         </div>
                     </div>
