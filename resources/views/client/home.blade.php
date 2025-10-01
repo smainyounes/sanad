@@ -2,6 +2,21 @@
 
 @section('title', 'دعم نفسي واجتماعي رقمي وحضوري')
 
+@section('styles')
+    <style>
+        /* Event List */
+        .event-item {
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        .event-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- 1. HERO SECTION -->
     <header class="hero-section">
@@ -23,10 +38,10 @@
         <section id="about">
             <div class="container">
                 <div class="row align-items-center g-5">
-                    <div class="col-lg-6 wow animate__animated animate__fadeInRight">
+                    <div class="col-lg-6 ">
                         <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop" alt="دعم وتعاون" class="img-fluid rounded-3 shadow-lg">
                     </div>
-                    <div class="col-lg-6 wow animate__animated animate__fadeInLeft">
+                    <div class="col-lg-6 ">
                         <h2 class="section-title text-center mb-4">من نحن؟</h2>
                         <p class="lead">تأسست منصة ومركز <strong>سند+</strong> إيماناً بأهمية الدعم الشامل للشباب في أهم مراحل حياتهم. ندرك التحديات التي يواجهها المراهقون عند العودة للمجتمع.</p>
                         <p>مهمتنا هي توفير مساحة آمنة ومحترفة، سواء <strong>عبر منصتنا الرقمية</strong> أو <strong>في مركزنا الفيزيائي</strong>، لتمنحهم الأدوات اللازمة للتعافي والنمو، والاندماج في المجتمع بثقة وإيجابية، ليكونوا أفراداً فاعلين ومستقلين.</p>
@@ -233,7 +248,7 @@
             <div class="container">
                 <h2 class="section-title text-center">قصص نجاح</h2>
                 <div class="row g-4">
-                    <div class="col-lg-6 wow animate__animated animate__fadeInRight">
+                    <div class="col-lg-6 wow animate__animated animate__fadeInUp">
                         <div class="testimonial-card text-center h-100 shadow-sm">
                             <i class="fas fa-quote-left quote-icon"></i>
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Avatar">
@@ -241,7 +256,7 @@
                             <div class="name">- خالد، 19 عاماً</div>
                         </div>
                     </div>
-                    <div class="col-lg-6 wow animate__animated animate__fadeInLeft" data-wow-delay="0.2s">
+                    <div class="col-lg-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                          <div class="testimonial-card text-center h-100 shadow-sm">
                             <i class="fas fa-quote-left quote-icon"></i>
                             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop" alt="Avatar">
