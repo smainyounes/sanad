@@ -22,3 +22,7 @@ Route::view('/contactus', 'client.contactus')->name('contactus');
 
 Route::view('/services', 'client.services')->name('services');
 Route::view('/privacy-policy', 'client.privacy-policy')->name('privacy-policy');
+
+for ($i=1; $i <= 4; $i++) { 
+    Route::view('/test/'. $i, 'test.' . $i);
+}
