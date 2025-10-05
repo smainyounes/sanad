@@ -1,36 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب جديد - سند</title>
 
-    <!-- Bootstrap 5 CSS (RTL) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
-    <!-- Google Fonts (Tajawal) -->
+
+    <!-- Google Fonts (Cairo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #2ECC71;
+            --primary-color: #0D244F; /* Deep Navy Blue */
+            --primary-color-rgb: 13, 36, 79;
+            --accent-color: #D4B283; /* Soft Gold/Beige */
             --text-color: #343a40;
-            --light-bg: #f8f9fc;
+            --light-bg: #F8F9FA;
+            --white: #ffffff;
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Cairo', sans-serif;
             background-color: var(--light-bg);
         }
         
-        /* Main Auth Layout */
         .auth-container {
             min-height: 100vh;
         }
@@ -45,8 +45,11 @@
         .auth-card {
             max-width: 450px;
             width: 100%;
+            background: var(--white);
             border: none;
-            background: transparent;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 20px;
         }
         
         .auth-header {
@@ -70,11 +73,11 @@
         .form-control {
             border-radius: 8px;
             padding: 12px 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #ced4da;
         }
         .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.25);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(212, 178, 131, 0.25);
         }
 
         .btn-primary {
@@ -83,13 +86,16 @@
             border-radius: 8px;
             padding: 12px;
             font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0a1c3e;
+            border-color: #0a1c3e;
         }
 
-        /* Visual Side (Left) */
         .auth-visual-side {
-            background: linear-gradient(-45deg, #4a90e2, #2ecc71, #4a90e2, #2ecc71);
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
+            background: linear-gradient(rgba(var(--primary-color-rgb), 0.9), rgba(var(--primary-color-rgb), 0.9)), url('https://images.unsplash.com/photo-1522071820081-009f0129c7da?q=80&w=2070&auto=format=fit=crop') no-repeat center center;
+            background-size: cover;
             color: white;
             display: flex;
             align-items: center;
@@ -97,21 +103,15 @@
             text-align: center;
         }
         
-        .auth-visual-side img {
-            max-width: 80%;
-            margin-bottom: 30px;
-        }
-
         .auth-visual-side h3 {
             font-weight: 800;
+            font-size: 2.2rem;
+        }
+        .auth-visual-side p {
+            font-size: 1.1rem;
+            opacity: 0.8;
         }
         
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         @media (max-width: 991px) {
             .auth-visual-side {
                 display: none;
@@ -123,20 +123,11 @@
     </style>
 </head>
 <body>
-
     <div class="container-fluid">
         <div class="row auth-container">
-            <!-- Visual Side -->
-            <div class="col-lg-6 auth-visual-side">
-                <div class="p-5">
-                    <img src="https://via.placeholder.com/400x300.png/FFFFFF/4A90E2?Text=Illustration" alt="Sanad Illustration" class="img-fluid wow animate__zoomIn" data-wow-delay="0.2s">
-                    <h3 class="wow animate__fadeInDown" data-wow-delay="0.4s">خطوتك الأولى نحو مستقبل مشرق</h3>
-                    <p class="wow animate__fadeInUp" data-wow-delay="0.6s">منصة سند هنا لمرافقتك في كل خطوة من رحلتك نحو الأمل والنجاح.</p>
-                </div>
-            </div>
             <!-- Form Side -->
             <div class="col-lg-6 auth-form-side">
-                <div class="card auth-card wow animate__fadeInRight">
+                <div class="card auth-card wow animate__animated animate__fadeInUp">
                     <div class="auth-header">
                         <div class="auth-logo">
                             <a href="/">سند</a>
@@ -162,18 +153,27 @@
                                 <label for="registerConfirmPassword" class="form-label">تأكيد كلمة المرور</label>
                                 <input type="password" class="form-control" id="registerConfirmPassword" required>
                             </div>
-                            <a href="/" class="btn btn-primary w-100">إنشاء الحساب</a>
+                            <button type="submit" class="btn btn-primary w-100">إنشاء الحساب</button>
                         </form>
                     </div>
                     <div class="card-footer text-center bg-transparent border-0 pt-3">
-                        <small class="text-muted">هل لديك حساب بالفعل؟ <a href="{{ route('login') }}" class="fw-bold">سجل الدخول</a></small>
+                        <small class="text-muted">هل لديك حساب بالفعل؟ <a href="{{ route('login') }}" class="fw-bold text-decoration-none" style="color: var(--primary-color);">سجل الدخول</a></small>
                     </div>
+                </div>
+            </div>
+
+            <!-- Visual Side -->
+            <div class="col-lg-6 auth-visual-side">
+                <div class="p-5 wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+                    <h3 class="mb-3">خطوتك الأولى نحو مستقبل مشرق</h3>
+                    <p>منصة سند هنا لمرافقتك في كل خطوة من رحلتك نحو الأمل والنجاح.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- WOW.js -->
+    
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();

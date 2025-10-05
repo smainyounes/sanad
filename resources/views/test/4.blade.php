@@ -488,6 +488,32 @@
             </div>
         </section>
 
+        <section id="events">
+            <div class="container">
+                <h2 class="section-title text-center">جلسات وفعاليات هذا الأسبوع</h2>
+                <div class="list-group list-group-flush col-lg-8 mx-auto">
+                    <div class="list-group-item p-4 mb-3 event-item wow animate__animated animate__fadeInRight">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h5><i class="fas fa-chalkboard-teacher text-primary me-2"></i> ورشة عمل: كيف تبني سيرتك الذاتية؟ (حضوري/أونلاين)</h5>
+                                <p class="mb-1 text-muted"><i class="fas fa-calendar-alt me-2"></i>الثلاثاء، 25 أكتوبر <i class="fas fa-clock ms-3 me-2"></i>06:00 مساءً</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary">انضم الآن</a>
+                        </div>
+                    </div>
+                     <div class="list-group-item p-4 mb-3 event-item wow animate__animated animate__fadeInRight" data-wow-delay="0.2s">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h5><i class="fas fa-users text-success me-2"></i> جلسة حوار جماعية: التعامل مع ضغوط المجتمع (حضوري)</h5>
+                                <p class="mb-1 text-muted"><i class="fas fa-calendar-alt me-2"></i>الخميس، 27 أكتوبر <i class="fas fa-clock ms-3 me-2"></i>07:00 مساءً</p>
+                            </div>
+                            <a href="#" class="btn btn-secondary">انضم الآن</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 5. HOW IT WORKS -->
         <section id="how-it-works" class="bg-light">
             <div class="container text-center">

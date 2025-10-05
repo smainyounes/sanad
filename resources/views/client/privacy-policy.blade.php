@@ -3,43 +3,109 @@
 @section('title', 'سياسة الخصوصية - سند')
 
 @section('styles')
-    <style>
-        .privacy-policy-content h2 {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        .privacy-policy-content h3 {
-            font-weight: 700;
-            color: var(--text-color);
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        .privacy-policy-content p, 
-        .privacy-policy-content li {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #555;
-        }
-        .privacy-policy-content ul {
-            padding-right: 20px;
-        }
-        .last-updated {
-            font-weight: 500;
-            color: #777;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-    </style>
+<style>
+    /* 
+    ==============================================
+    STYLES FOR THE PRIVACY POLICY PAGE
+    (Based on the landing page design system)
+    ==============================================
+    */
+
+    /* Page Header for inner pages */
+    .page-header {
+        background: linear-gradient(rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.95)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop') no-repeat center center;
+        background-size: cover;
+        padding: 100px 0 80px;
+        text-align: center;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .page-header h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        color: var(--primary-color);
+    }
+    .page-header p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 15px auto 0;
+        color: #555;
+    }
+
+    /* Privacy Policy Content Styling */
+    .privacy-policy-content {
+        background-color: var(--white);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    }
+    .privacy-policy-content h2 {
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-size: 2.2rem;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .privacy-policy-content h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-color);
+        border-radius: 2px;
+    }
+    .privacy-policy-content h3 {
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+    }
+    .privacy-policy-content p, 
+    .privacy-policy-content li {
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #555;
+    }
+    .privacy-policy-content ul {
+        padding-right: 30px; /* More padding to match the style */
+        margin-bottom: 25px;
+    }
+    .privacy-policy-content li {
+        margin-bottom: 15px;
+    }
+    .privacy-policy-content strong {
+        color: var(--text-color); /* Bold text should remain dark */
+    }
+    .last-updated {
+        font-weight: 500;
+        color: #777;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        font-size: 1.05rem;
+    }
+    
+    /* Links within policy */
+    .privacy-policy-content a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .privacy-policy-content a:hover {
+        color: var(--accent-color);
+        padding-right: 5px;
+    }
+</style>
 @endsection
 
 @section('content')
     <!-- PAGE HEADER -->
-    <header class="page-header wow animate__fadeIn">
+    <header class="page-header wow animate__animated animate__fadeIn">
         <div class="container">
             <h1>سياسة الخصوصية</h1>
             <p>خصوصيتكم وأمان معلوماتكم هي أولويتنا القصوى. توضح هذه الصفحة كيف نجمع، نستخدم، ونحمي بياناتكم.</p>
@@ -47,12 +113,12 @@
     </header>
 
     <main>
-        <section id="privacy-policy">
+        <section id="privacy-policy-section" class="py-5 bg-light">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-9 wow animate__fadeInUp">
+                    <div class="col-lg-9 wow animate__animated animate__fadeInUp">
                         <div class="privacy-policy-content">
-                            <p class="last-updated">آخر تحديث: 24 أكتوبر 2023</p>
+                            <p class="last-updated">آخر تحديث: 4 أكتوبر 2025</p>
 
                             <h2>1. مقدمة</h2>
                             <p>
@@ -63,8 +129,7 @@
                             <p>نقوم بجمع أنواع مختلفة من المعلومات لتقديم وتحسين خدماتنا لكم، وتشمل:</p>
                             <ul>
                                 <li><strong>معلومات التعريف الشخصية:</strong> مثل الاسم الكامل، البريد الإلكتروني، ورقم الهاتف عند إنشاء حساب أو التواصل معنا عبر نماذج الاتصال.</li>
-                                <li><strong>المعلومات التقنية:</strong> مثل عنوان بروتوكول الإنترنت (IP)، نوع المتصفح، نظام التشغيل، والصفحات التي تزورونها على موقعنا، وذلك لأغراض تحليلية لتحسين تجربة المستخدم.</li>
-                                <li><strong>ملفات تعريف الارتباط (Cookies):</strong> نستخدم ملفات تعريف الارتباط الأساسية لضمان عمل الموقع بشكل سليم، مثل تذكر حالة تسجيل الدخول.</li>
+                                <li><strong>المعلومات التقنية:</strong> مثل عنوان بروتوكول الإنترنت (IP)، نوع المتصفح، نظام التشغيل، وملفات تعريف الارتباط (Cookies) التي تساعدنا على تحسين تجربة المستخدم وضمان عمل الموقع بشكل سليم.</li>
                             </ul>
 
                             <h2>3. كيف نستخدم معلوماتكم؟</h2>
@@ -109,11 +174,11 @@
                             <h2>7. التغييرات على سياسة الخصوصية</h2>
                             <p>
                                 قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سنقوم بنشر أي تغييرات على هذه الصفحة مع تحديث تاريخ "آخر تحديث" في الأعلى. نوصي بمراجعة هذه الصفحة بشكل دوري للاطلاع على أي مستجدات.
-                            </g>
+                            </p>
                             
                             <h2>8. الاتصال بنا</h2>
                             <p>
-                                إذا كان لديكم أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، فلا تترددوا في <a href="{{ route('contactus') }}" class="fw-bold text-decoration-none" style="color: var(--primary-color);">التواصل معنا</a>.
+                                إذا كان لديكم أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، فلا تترددوا في <a href="/contactus">التواصل معنا</a>.
                             </p>
                         </div>
                     </div>
