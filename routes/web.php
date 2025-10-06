@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ProfileController;
 
 Route::get('/', function () {
     return view('client.home');
@@ -26,3 +30,43 @@ Route::view('/privacy-policy', 'client.privacy-policy')->name('privacy-policy');
 for ($i=1; $i <= 4; $i++) { 
     Route::view('/test/'. $i, 'test.' . $i);
 }
+
+// admin routes
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->middleware('auth:admin')->name('admin.dashboard');
+
+    Route::view('/login', 'admin.login')->middleware('guest:admin')->name('admin.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('admin.login')->middleware('guest:admin');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout')->middleware('auth:admin');
+
+    Route::group(['prefix' => 'profile', 'middleware' => 'auth:admin'], function () {
+        Route::get('/', [ProfileController::class, 'settings'])->name('admin.profile.index');
+        Route::post('/updateinfos', [ProfileController::class, 'updateInfos'])->name('admin.profile.infos');
+        Route::post('/updatepassword', [ProfileController::class, 'updatePassword'])->name('admin.profile.password');
+    });
+
+    Route::prefix('admins')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admins.index');       // List all admins
+        Route::get('/create', [AdminController::class, 'create'])->name('admins.create'); // Show create form
+        Route::post('/', [AdminController::class, 'store'])->name('admins.store');       // Store new admin
+        Route::get('/{admin}', [AdminController::class, 'show'])->name('admins.show');   // Show specific admin
+        Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('admins.edit'); // Show edit form
+        Route::put('/{admin}', [AdminController::class, 'update'])->name('admins.update');  // Update admin
+        Route::post('/delete/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy'); // Delete admin
+    });
+
+    // Route for showing the password set form (Web route example)
+    Route::get('/invitation/{token}', [AdminController::class, 'showSetPasswordForm'])->middleware('guest')->name('admin.invitation');
+
+    // Route for setting the password (Web route example)
+    Route::post('/invitation/{token}', [AdminController::class, 'setPassword'])->middleware('guest')->name('admin.setPassword');
+
+    // resend admin invitation
+    Route::post('/admin/resend/invitation/{id}', [AdminController::class, 'regenInviteToken'])->middleware('guest')->name('admin.regenInviteToken');
+
+    Route::get('contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('contacts/{id}', [ContactController::class, 'show'])->name('admin.contacts.show');
+    Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
+
+    // Route::resource('admins', AdminController::class);
+});

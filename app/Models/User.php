@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
+        'bio',
+        'image',
+        'speciality_id',
     ];
 
     /**
@@ -44,5 +48,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function speciality()
+    {
+        return $this->belongsTo(Speciality::class);
     }
 }
