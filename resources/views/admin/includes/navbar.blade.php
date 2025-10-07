@@ -77,7 +77,7 @@
                   class="avatar-img rounded-circle"
                 />
               </div>
-              <span class="profile-username text-white">
+              <span class="profile-username">
                 {{-- <span class="op-7"></span> --}}
                 <span class="fw-bold">{{ Auth::guard('admin')->user()->name }}</span>
               </span>

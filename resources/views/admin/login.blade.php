@@ -26,7 +26,7 @@
 <body>
     <div class="container">
         <div class="login-container mx-auto">
-            <img src="/assets/images/logo-2.png" alt="Logo" class="logo" width="100">
+            {{-- <img src="/assets/images/logo-2.png" alt="Logo" class="logo" width="100"> --}}
             <h2 class="text-center mb-4">Connexion Admin</h2>
             <form action="" method="POST">
                 @csrf

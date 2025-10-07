@@ -69,4 +69,13 @@ Route::prefix('admin')->group(function () {
     Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
 
     // Route::resource('admins', AdminController::class);
+    Route::name('admin.')->group(function () {
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->middleware('auth:admin');
+        Route::resource('specialities', \App\Http\Controllers\Admin\SpecialityController::class)->middleware('auth:admin');
+        Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class)->middleware('auth:admin');
+        Route::resource('programs', App\Http\Controllers\Admin\ProgramController::class)->middleware('auth:admin');
+        Route::resource('specialists', App\Http\Controllers\Admin\SpecialistController::class)->middleware('auth:admin');
+
+    });
+
 });

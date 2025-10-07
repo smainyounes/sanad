@@ -28,62 +28,58 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item ">
-                    <a
-                        href="/admin"
-                        >
+                <li class="nav-item">
+                    <a href="/admin">
                         <i class="fas fa-home"></i>
                         <p>Tableau de bord</p>
-                        {{-- <span class="caret"></span> --}}
                     </a>
                 </li>
-                
+            
+                <li class="nav-item">
+                    <a href="{{ route('admin.specialities.index') }}">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <p>Spécialités</p>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="{{ route('admin.categories.index') }}">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <p>Catégories</p>
+                    </a>
+                </li>
+            
+                {{-- 🧑‍⚕️ Specialists --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.specialists.index') }}">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <p>Spécialistes</p>
+                    </a>
+                </li>
+            
+                {{-- 📚 Programs --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.programs.index') }}">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p>Programmes</p>
+                    </a>
+                </li>
+            
                 @if (Auth::guard('admin')->user()->admin_type == 'super_admin')
-                    <li class="nav-item ">
-                        <a  href="{{ route('admin.contacts.index') }}">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contacts.index') }}">
                             <i class="fa-solid fa-envelope-open-text"></i>
                             <p>Contacts</p>
-                            {{-- <span class="caret"></span> --}}
                         </a>
                     </li>
-
-                    <li class="nav-item ">
-                        <a  href="{{ route('admins.index') }}">
+            
+                    <li class="nav-item">
+                        <a href="{{ route('admins.index') }}">
                             <i class="fas fa-users"></i>
                             <p>Gestion des admins</p>
-                            {{-- <span class="caret"></span> --}}
                         </a>
-                        {{-- <div class="collapse" id="admin">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <a href="{{ route('admin.index') }}">
-                                        <span class="sub-item">Liste des admins</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.create') }}">
-                                        <span class="sub-item">Ajouter un admin</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> --}}
                     </li>
-
-                    {{-- <li class="nav-item ">
-                        <a  href="{{ route('admin.role.index') }}">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <p>Gestion des roles</p>
-                        </a>
-                    </li> --}}
-
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('admin.settings.index') }}">
-                            <i class="fa-solid fa-gear"></i>
-                            <p>Parameteres generales</p>
-                        </a>
-                    </li> --}}
                 @endif
-                
             </ul>
         </div>
     </div>

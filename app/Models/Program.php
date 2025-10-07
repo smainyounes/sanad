@@ -16,7 +16,7 @@ class Program extends Model
         'description',
         'date',
         'is_online',
-        'status',
+        'status', // active || desactive
     ];
 
     public function category()

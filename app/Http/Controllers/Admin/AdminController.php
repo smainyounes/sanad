@@ -13,7 +13,12 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $specialitiesCount = \App\Models\Speciality::count();
+        $categoriesCount = \App\Models\Category::count();
+        $specialistsCount = \App\Models\User::where('type', 'specialist')->count();
+        $adminsCount = \App\Models\Admin::count();
+
+        return view('admin.dashboard', compact('specialitiesCount', 'categoriesCount', 'specialistsCount', 'adminsCount'));
     }
 
     // Show list of admins
