@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Contact;
 use App\Models\Program;
 use App\Models\Speciality;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -44,5 +45,23 @@ class HomeController extends Controller
         $specialities = Speciality::orderBy('id')->get();
 
         return view('client.specialists', compact('specialists', 'specialities'));
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        // ✅ Validate inputs
+        $validated = $request->validate([
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:5000',
+            'phone' => 'nullable',
+        ]);
+
+        // ✅ Create contact record
+        Contact::create($validated);
+
+        // ✅ Redirect with success message
+        return redirect()->back()->with('success', 'تم إرسال رسالتك بنجاح! سنقوم بالرد عليك قريباً.');
     }
 }

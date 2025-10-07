@@ -33,7 +33,7 @@ class ProgramController extends Controller
 
         Program::create($request->all());
 
-        return redirect()->back()->with('success', 'Programme ajouté avec succès.');
+        return redirect()->back()->with('success', 'تم إضافة البرنامج بنجاح.');
     }
 
     public function edit($id)
@@ -61,13 +61,13 @@ class ProgramController extends Controller
 
         $program->update($request->all());
 
-        return redirect()->route('admin.programs.index')->with('success', 'Programme mis à jour avec succès.');
+        return redirect()->route('admin.programs.index')->with('success', 'تم تحديث البرنامج بنجاح.');
     }
 
     public function destroy($id)
     {
         Program::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Programme supprimé avec succès.');
+        return redirect()->back()->with('success', 'تم حذف البرنامج بنجاح.');
     }
 
 }

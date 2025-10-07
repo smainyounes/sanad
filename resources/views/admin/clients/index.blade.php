@@ -1,26 +1,26 @@
 @extends('admin.layout.app')
 
 @section('content')
-<div class="container">
+<div class="container" >
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Clients Management</h3>
-        <a href="{{ route('admin.clients.create') }}" class="btn btn-primary">Add Client</a>
+        <h3>إدارة العملاء</h3>
+        <a href="{{ route('admin.clients.create') }}" class="btn btn-primary">إضافة عميل</a>
     </div>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped text-center align-middle">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Type</th>
-                <th>Bio</th>
-                <th>Image</th>
-                <th>Actions</th>
+                <th>الاسم</th>
+                <th>البريد الإلكتروني</th>
+                <th>النوع</th>
+                <th>النبذة</th>
+                <th>الصورة</th>
+                <th>الإجراءات</th>
             </tr>
         </thead>
         <tbody>
@@ -29,24 +29,32 @@
                     <td>{{ $client->id }}</td>
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->email }}</td>
-                    <td>{{ ucfirst($client->type) }}</td>
+                    <td>
+                        @if($client->type === 'student')
+                            طالب
+                        @elseif($client->type === 'parent')
+                            ولي أمر
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>{{ Str::limit($client->bio, 40) }}</td>
                     <td>
                         @if($client->image)
-                            <img src="{{ asset('storage/' . $client->image) }}" alt="" width="50">
+                            <img src="{{ asset('storage/' . $client->image) }}" alt="صورة العميل" width="50">
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('admin.clients.edit', $client->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('admin.clients.edit', $client->id) }}" class="btn btn-sm btn-warning">تعديل</a>
                         <form action="{{ route('admin.clients.destroy', $client->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</button>
+                            <button onclick="return confirm('هل أنت متأكد من الحذف؟')" class="btn btn-sm btn-danger">حذف</button>
                         </form>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="7" class="text-center">No clients found.</td></tr>
+                <tr><td colspan="7" class="text-center text-muted">لا يوجد عملاء حالياً.</td></tr>
             @endforelse
         </tbody>
     </table>

@@ -38,7 +38,7 @@ class SpecialistController extends Controller
 
         User::create($data);
 
-        return redirect()->back()->with('success', 'Spécialiste ajouté avec succès.');
+        return redirect()->back()->with('success', 'تم إضافة الأخصائي بنجاح.');
     }
 
     public function edit($id)
@@ -74,7 +74,7 @@ class SpecialistController extends Controller
 
         $specialist->update($data);
 
-        return redirect()->route('admin.specialists.index')->with('success', 'Spécialiste mis à jour avec succès.');
+        return redirect()->route('admin.specialists.index')->with('success', 'تم تحديث الأخصائي بنجاح.');
     }
 
     public function destroy($id)
@@ -85,7 +85,7 @@ class SpecialistController extends Controller
         }
         $specialist->delete();
 
-        return redirect()->back()->with('success', 'Spécialiste supprimé avec succès.');
+        return redirect()->back()->with('success', 'تم حذف الأخصائي بنجاح.');
     }
 
 }

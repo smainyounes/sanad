@@ -60,7 +60,7 @@ class AdminController extends Controller
         $admin->notify(new AdminInvitationNotification($admin->invitation_token));
 
 
-        return redirect()->route('admins.index')->with('success', 'Administrateur créé avec succès.');
+        return redirect()->route('admins.index')->with('success', 'تم إنشاء المدير بنجاح.');
     }
 
     // Show form to edit an existing admin
@@ -87,14 +87,14 @@ class AdminController extends Controller
 
         $admin->update($validatedData);
 
-        return redirect()->route('admins.index')->with('success', 'L\'administrateur a été mis à jour avec succès.');
+        return redirect()->route('admins.index')->with('success', 'تم تحديث المدير بنجاح.');
     }
 
     // Delete an admin
     public function destroy(Admin $admin)
     {
         $admin->delete();
-        return redirect()->route('admins.index')->with('success', 'L\'administrateur a été supprimé avec succès.');
+        return redirect()->route('admins.index')->with('success', 'تم حذف المدير بنجاح.');
     }
 
 
@@ -109,7 +109,7 @@ class AdminController extends Controller
         $admin = Admin::where('invitation_token', $token)->firstOrFail();
 
         if (!$admin->isInvitationValid()) {
-            abort(403, 'Le lien d’invitation est invalide ou a expiré.');
+            abort(403, 'رابط الدعوة غير صالح أو منتهي الصلاحية.');
         }
 
         return view('admin.admins.set_password', compact('admin', 'token'));
@@ -120,7 +120,7 @@ class AdminController extends Controller
         $admin = Admin::where('invitation_token', $token)->firstOrFail();
 
         if (!$admin->isInvitationValid()) {
-            return redirect()->route('login')->withErrors('Le lien d’invitation est invalide ou a expiré.');
+            return redirect()->route('login')->withErrors('رابط الدعوة غير صالح أو منتهي الصلاحية.');
         }
 
         $request->validate([
@@ -131,7 +131,7 @@ class AdminController extends Controller
         $admin->password = Hash::make($request->password);
         $admin->clearInvitation();
 
-        return redirect()->route('admin.login')->with('success', 'Votre mot de passe a été défini. Vous pouvez maintenant vous connecter.');
+        return redirect()->route('admin.login')->with('success', 'تم تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.');
     }
 
     public function regenInviteToken($id)
@@ -140,6 +140,6 @@ class AdminController extends Controller
         $admin->generateInvitationToken();
         $admin->notify(new AdminInvitationNotification($admin->invitation_token));
 
-        return back()->with('success', 'Invitation a été re-envoyé.');
+        return back()->with('success', 'تم إعادة إرسال الدعوة.');
     }
 }

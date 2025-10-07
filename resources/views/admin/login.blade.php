@@ -24,30 +24,47 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-container mx-auto">
-            {{-- <img src="/assets/images/logo-2.png" alt="Logo" class="logo" width="100"> --}}
-            <h2 class="text-center mb-4">Connexion Admin</h2>
-            <form action="" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="email" class="form-label">Adresse e-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre e-mail" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-                </div>
-                <div class="mb-3">
-                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Se connecter</button>
-            </form>
-            {{-- <div class="text-center mt-3">
-                <a href="#">Mot de passe oublié ?</a>
-            </div> --}}
-        </div>
+<div class="container" dir="rtl">
+    <div class="login-container mx-auto">
+        {{-- <img src="/assets/images/logo-2.png" alt="الشعار" class="logo" width="100"> --}}
+        <h2 class="text-center mb-4">تسجيل دخول المشرف</h2>
+        <form action="" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    placeholder="أدخل بريدك الإلكتروني" 
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">كلمة المرور</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    name="password" 
+                    placeholder="أدخل كلمة المرور" 
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">تسجيل الدخول</button>
+        </form>
+
+        {{-- <div class="text-center mt-3">
+            <a href="#">هل نسيت كلمة المرور؟</a>
+        </div> --}}
     </div>
+</div>
+
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>

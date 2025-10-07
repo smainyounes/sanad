@@ -27,6 +27,7 @@ Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
 Route::view('/aboutus', 'client.aboutus')->name('aboutus');
 
 Route::view('/contactus', 'client.contactus')->name('contactus');
+Route::post('/contactus', [HomeController::class, 'contactSubmit']);
 
 Route::view('/services', 'client.services')->name('services');
 Route::view('/privacy-policy', 'client.privacy-policy')->name('privacy-policy');

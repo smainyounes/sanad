@@ -1,23 +1,23 @@
 @extends('admin.layout.app')
 
 @section('content')
-    <div class="container my-5">
+    <div class="container my-5" >
         <div class="card">
             <div class="card-header">
-                <h4>Contacts List</h4>
+                <h4>قائمة الرسائل</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped text-center align-middle">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Nom complet</th>
-                                <th>Date</th>
-                                <th>Email</th>
-                                <th>Sujet</th>
-                                <th>Message</th>
-                                <th>Actions</th>
+                                <th>الاسم الكامل</th>
+                                <th>التاريخ</th>
+                                <th>البريد الإلكتروني</th>
+                                <th>الموضوع</th>
+                                <th>الرسالة</th>
+                                <th>الإجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,12 +30,14 @@
                                     <td>{{ $contact->subject }}</td>
                                     <td>{{ Str::limit($contact->message, 50) }}</td>
                                     <td>
-                                        <a href="{{ route('admin.contacts.show', $contact->id) }}" class="btn btn-info btn-sm">Afficher</a>
+                                        <a href="{{ route('admin.contacts.show', $contact->id) }}" class="btn btn-info btn-sm">
+                                            عرض
+                                        </a>
             
-                                        <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('êtes vous sure?');">
+                                        <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -44,12 +46,10 @@
                     </table>
                 </div>
         
-        
                 <div>
                     {{ $contacts->links() }}
                 </div>
             </div>
         </div>
-        
     </div>
 @endsection

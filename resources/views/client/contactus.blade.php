@@ -178,30 +178,69 @@
                     <div class="col-lg-7 wow animate__animated animate__fadeInLeft">
                         <div class="form-wrapper">
                             <h4 class="mb-4">أرسل لنا رسالة</h4>
-                            <form>
+                            <form action="" method="POST">
+                                @csrf
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="name" class="form-label">الاسم الكامل</label>
-                                        <input type="text" class="form-control" id="name" required>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="name" 
+                                            name="name" 
+                                            placeholder="أدخل اسمك الكامل"
+                                            required>
                                     </div>
+
                                     <div class="col-md-6">
                                         <label for="email" class="form-label">البريد الإلكتروني</label>
-                                        <input type="email" class="form-control" id="email" required>
+                                        <input 
+                                            type="email" 
+                                            class="form-control" 
+                                            id="email" 
+                                            name="email" 
+                                            placeholder="أدخل بريدك الإلكتروني"
+                                            required>
                                     </div>
-                                    <div class="col-12">
+
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">رقم الهاتف</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="phone" 
+                                            name="phone" 
+                                            placeholder="أدخل رقم هاتفك (اختياري)">
+                                    </div>
+
+                                    <div class="col-md-6">
                                         <label for="subject" class="form-label">الموضوع</label>
-                                        <input type="text" class="form-control" id="subject" required>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="subject" 
+                                            name="subject" 
+                                            placeholder="موضوع الرسالة"
+                                            required>
                                     </div>
+
                                     <div class="col-12">
                                         <label for="message" class="form-label">رسالتك</label>
-                                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                                        <textarea 
+                                            class="form-control" 
+                                            id="message" 
+                                            name="message" 
+                                            rows="5" 
+                                            placeholder="اكتب رسالتك هنا..." 
+                                            required></textarea>
                                     </div>
+
                                     <div class="col-12 mt-4">
-                                        {{-- Using the consistent .btn-primary class from landing page --}}
                                         <button type="submit" class="btn btn-primary w-100">إرسال الرسالة</button>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

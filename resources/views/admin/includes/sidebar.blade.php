@@ -1,29 +1,29 @@
-<!-- Sidebar -->
+<!-- الشريط الجانبي -->
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
-        <!-- Logo Header -->
+        <!-- رأس الشعار -->
         <div class="logo-header" data-background-color="dark">
             <a href="/admin" class="logo me-4">
                 {{-- <img
                     src="/assets/images/logo.png"
-                    alt="navbar brand"
+                    alt="شعار الشريط العلوي"
                     class="navbar-brand img-fluid"
-                    /> --}}
-                <h4 class="text-white">Sanad</h4>
+                /> --}}
+                <h4 class="text-white">سند</h4>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
-                <i class="gg-menu-right"></i>
+                    <i class="gg-menu-right"></i>
                 </button>
                 <button class="btn btn-toggle sidenav-toggler">
-                <i class="gg-menu-left"></i>
+                    <i class="gg-menu-left"></i>
                 </button>
             </div>
             <button class="topbar-toggler more">
-            <i class="gg-more-vertical-alt"></i>
+                <i class="gg-more-vertical-alt"></i>
             </button>
         </div>
-        <!-- End Logo Header -->
+        <!-- نهاية رأس الشعار -->
     </div>
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
@@ -31,37 +31,42 @@
                 <li class="nav-item">
                     <a href="/admin">
                         <i class="fas fa-home"></i>
-                        <p>Tableau de bord</p>
+                        <p>لوحة التحكم</p>
                     </a>
                 </li>
-            
+                <li class="nav-item">
+                    <a href="{{ route('admin.clients.index') }}">
+                        <i class="fas fa-users"></i>
+                        <p>العملاء</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.specialities.index') }}">
                         <i class="fa-solid fa-book-open-reader"></i>
-                        <p>Spécialités</p>
+                        <p>التخصصات</p>
                     </a>
                 </li>
             
                 <li class="nav-item">
                     <a href="{{ route('admin.categories.index') }}">
                         <i class="fa-solid fa-layer-group"></i>
-                        <p>Catégories</p>
+                        <p>الفئات</p>
                     </a>
                 </li>
             
-                {{-- 🧑‍⚕️ Specialists --}}
+                {{-- 🧑‍⚕️ الأخصائيون --}}
                 <li class="nav-item">
                     <a href="{{ route('admin.specialists.index') }}">
                         <i class="fa-solid fa-user-doctor"></i>
-                        <p>Spécialistes</p>
+                        <p>الأخصائيون</p>
                     </a>
                 </li>
             
-                {{-- 📚 Programs --}}
+                {{-- 📚 البرامج --}}
                 <li class="nav-item">
                     <a href="{{ route('admin.programs.index') }}">
                         <i class="fa-solid fa-calendar-days"></i>
-                        <p>Programmes</p>
+                        <p>البرامج</p>
                     </a>
                 </li>
             
@@ -69,14 +74,14 @@
                     <li class="nav-item">
                         <a href="{{ route('admin.contacts.index') }}">
                             <i class="fa-solid fa-envelope-open-text"></i>
-                            <p>Contacts</p>
+                            <p>جهات الاتصال</p>
                         </a>
                     </li>
             
                     <li class="nav-item">
                         <a href="{{ route('admins.index') }}">
                             <i class="fas fa-users"></i>
-                            <p>Gestion des admins</p>
+                            <p>إدارة المشرفين</p>
                         </a>
                     </li>
                 @endif
@@ -84,4 +89,4 @@
         </div>
     </div>
 </div>
-<!-- End Sidebar -->
+<!-- نهاية الشريط الجانبي -->
