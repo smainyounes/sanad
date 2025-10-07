@@ -136,17 +136,24 @@
                         <p class="text-muted">أهلاً بعودتك! أدخل بياناتك للمتابعة.</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{ route('login.post') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="loginEmail" class="form-label">البريد الإلكتروني</label>
-                                <input type="email" class="form-control" id="loginEmail" placeholder="example@email.com" required>
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="loginEmail" placeholder="example@email.com" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between">
                                     <label for="loginPassword" class="form-label">كلمة المرور</label>
                                     <a href="#" class="form-text small text-decoration-none" style="color: var(--primary-color);">نسيت كلمة المرور؟</a>
                                 </div>
-                                <input type="password" class="form-control" id="loginPassword" required>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="loginPassword" required>
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary w-100">دخول</button>
                         </form>

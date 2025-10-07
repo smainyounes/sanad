@@ -179,106 +179,37 @@
 
             <!-- PROGRAMS GRID -->
             <div class="row g-4" id="programsContainer">
-                <!-- Program 1 -->
-                <div class="col-lg-6 program-item wow animate__animated animate__fadeInUp" data-category="vocational in-person">
-                    <div class="card program-card">
-                        <div class="card-body">
-                            <div>
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title">ورشة عمل: بناء السيرة الذاتية الاحترافية</h5>
-                                    <span class="badge rounded-pill program-badge badge-in-person">حضوري</span>
+                @forelse($programs as $index => $program)
+                    <div class="col-lg-6 program-item wow animate__animated animate__fadeInUp" @if($index % 2 == 1) data-wow-delay="0.1s" @endif data-category="{{ ($program->category?->id == 2 ? 'psychologist' : ($program->category?->id == 3 ? 'social' : ($program->category?->id == 4 ? 'vocational' : 'all'))) }} {{ $program->is_online ? 'digital' : 'in-person' }}">
+                        <div class="card program-card">
+                            <div class="card-body">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title">{{ $program->title }}</h5>
+                                        <span class="badge rounded-pill program-badge {{ $program->is_online ? 'badge-digital' : 'badge-in-person' }}">{{ $program->is_online ? 'رقمي' : 'حضوري' }}</span>
+                                    </div>
+                                    <p class="card-text">{{ $program->description }}</p>
                                 </div>
-                                <p class="card-text">تعلم معنا خطوة بخطوة كيفية إنشاء سيرة ذاتية قوية تبرز مهاراتك وتفتح لك أبواب الفرص.</p>
-                            </div>
-                            <div class="mt-auto">
-                                <hr>
-                                <div class="d-flex justify-content-between program-meta mb-3">
-                                    <span><i class="fas fa-calendar-alt"></i> 25 أكتوبر 2023 - 06:00 مساءً</span>
-                                    <span><i class="fas fa-user-tie"></i> أ. ليلى كريم</span>
+                                <div class="mt-auto">
+                                    <hr>
+                                    <div class="d-flex justify-content-between program-meta mb-3">
+                                        <span><i class="fas fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($program->date)->translatedFormat('d F Y') }}</span>
+                                        <span><i class="fas fa-user-tie"></i> {{ $program->specialist?->name }}</span>
+                                    </div>
+                                    <button class="btn btn-secondary w-100" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>احجز الآن</button>
                                 </div>
-                                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">احجز الآن</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Program 2 -->
-                <div class="col-lg-6 program-item wow animate__animated animate__fadeInUp" data-wow-delay="0.1s" data-category="social digital">
-                    <div class="card program-card">
-                        <div class="card-body">
-                            <div>
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title">جلسة حوار: التعامل مع ضغوط المجتمع</h5>
-                                    <span class="badge rounded-pill program-badge badge-digital">رقمي</span>
-                                </div>
-                                <p class="card-text">مساحة آمنة لمناقشة التحديات الاجتماعية وكيفية التعامل معها بمرونة وثقة تحت إشراف مختص.</p>
-                            </div>
-                            <div class="mt-auto">
-                                <hr>
-                                <div class="d-flex justify-content-between program-meta mb-3">
-                                    <span><i class="fas fa-calendar-alt"></i> 27 أكتوبر 2023 - 07:00 مساءً</span>
-                                    <span><i class="fas fa-user-tie"></i> أ. فاطمة علي</span>
-                                </div>
-                                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">احجز الآن</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Program 3 -->
-                <div class="col-lg-6 program-item wow animate__animated animate__fadeInUp" data-category="psychologist in-person">
-                    <div class="card program-card">
-                        <div class="card-body">
-                            <div>
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title">مجموعة دعم: إدارة القلق والتوتر</h5>
-                                    <span class="badge rounded-pill program-badge badge-in-person">حضوري</span>
-                                </div>
-                                <p class="card-text">انضم لمجموعة دعم لتعلم تقنيات عملية للتخفيف من القلق والتوتر في بيئة داعمة ومحفزة.</p>
-                            </div>
-                            <div class="mt-auto">
-                                <hr>
-                                <div class="d-flex justify-content-between program-meta mb-3">
-                                    <span><i class="fas fa-calendar-alt"></i> 29 أكتوبر 2023 - 05:00 مساءً</span>
-                                    <span><i class="fas fa-user-tie"></i> د. أحمد محمود</span>
-                                </div>
-                                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">احجز الآن</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Program 4 -->
-                <div class="col-lg-6 program-item wow animate__animated animate__fadeInUp" data-wow-delay="0.1s" data-category="vocational digital">
-                    <div class="card program-card">
-                        <div class="card-body">
-                            <div>
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title">ندوة: أساسيات الاستقلال المالي</h5>
-                                    <span class="badge rounded-pill program-badge badge-digital">رقمي</span>
-                                </div>
-                                <p class="card-text">اكتشف المفاهيم الأساسية لإدارة أموالك، ووضع الميزانية، والادخار من أجل مستقبلك.</p>
-                            </div>
-                            <div class="mt-auto">
-                                <hr>
-                                <div class="d-flex justify-content-between program-meta mb-3">
-                                    <span><i class="fas fa-calendar-alt"></i> 02 نوفمبر 2023 - 08:00 مساءً</span>
-                                    <span><i class="fas fa-user-tie"></i> أ. كريم بن علي</span>
-                                </div>
-                                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">احجز الآن</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <div class="text-center text-muted">لا توجد برامج متاحة حالياً.</div>
+                @endforelse
             </div>
 
             <!-- PAGINATION -->
-            <nav aria-label="Page navigation" class="mt-5 wow animate__animated animate__fadeInUp">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled"><a class="page-link" href="#">السابق</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">التالي</a></li>
-                </ul>
-            </nav>
+            <div class="mt-5 wow animate__animated animate__fadeInUp">
+                {{ $programs->links() }}
+            </div>
         </section>
     </main>
 
@@ -299,6 +230,22 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN REQUIRED MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">الرجاء تسجيل الدخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="text-muted mb-4">للانضمام إلى الفعالية، يرجى تسجيل الدخول إلى حسابك.</p>
+                    <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">تسجيل الدخول</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-primary w-100">إنشاء حساب جديد</a>
                 </div>
             </div>
         </div>

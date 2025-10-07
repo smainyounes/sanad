@@ -14,7 +14,25 @@
                 <li class="nav-item"><a class="nav-link" href="/#testimonials">قصص نجاح</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contactus') }}">التواصل والمقر</a></li>
             </ul>
-            <a href="{{ route('register') }}" class="btn btn-primary btn-sm px-4">ابدأ الآن</a>
+            @auth
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ auth()->user()->name }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ route('profile') }}">صفحتي</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}" class="px-3 py-1">
+                                @csrf
+                                <button type="submit" class="btn btn-link p-0 text-danger">تسجيل الخروج</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <a href="{{ route('register') }}" class="btn btn-primary btn-sm px-4">ابدأ الآن</a>
+            @endauth
         </div>
     </div>
 </nav>

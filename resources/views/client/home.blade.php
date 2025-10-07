@@ -27,7 +27,7 @@
                     <p class="lead wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                         نوفر بيئة دعم متكاملة، تجمع بين الإرشاد الرقمي المتطور والرعاية الحضورية المباشرة، لمرافقة الشباب في رحلتهم نحو تحقيق ذواتهم والاندماج الإيجابي في المجتمع.
                     </p>
-                    <a href="#" class="btn btn-primary btn-lg wow animate__animated animate__pulse" data-wow-delay="0.4s">اكتشف خدماتنا</a>
+                    <a href="#services" class="btn btn-primary btn-lg wow animate__animated animate__pulse" data-wow-delay="0.4s">اكتشف خدماتنا</a>
                 </div>
             </div>
         </div>
@@ -49,6 +49,43 @@
                 </div>
             </div>
         </section>
+
+        <!-- Global Modals for Home -->
+        <div class="modal fade" id="reserveModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">طرق الحجز والتواصل</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center text-muted">للحجز أو الاستفسار، يرجى التواصل معنا عبر إحدى القنوات التالية:</p>
+                        <div class="list-group list-group-flush text-center contact-modal-list">
+                            <a href="tel:+213551234567" class="list-group-item list-group-item-action"><i class="fas fa-phone"></i> اتصال هاتفي مباشر</a>
+                            <a href="https://wa.me/213551234567" target="_blank" class="list-group-item list-group-item-action"><i class="fab fa-whatsapp" style="color:#25D366;"></i> محادثة عبر واتساب</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="loginModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">الرجاء تسجيل الدخول</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p class="text-muted mb-4">للقيام بهذه العملية، يرجى تسجيل الدخول إلى حسابك.</p>
+                        <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">تسجيل الدخول</a>
+                        <a href="{{ route('register') }}" class="btn btn-outline-primary w-100">إنشاء حساب جديد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 3. MAIN SERVICES -->
         <section id="services" class="bg-light">
@@ -94,65 +131,59 @@
                 <h2 class="section-title text-center">فريق الأخصائيين</h2>
                 <p class="section-subtitle text-center">نفخر بفريقنا من الخبراء والمستشارين المتخصصين في مختلف مجالات الدعم النفسي والاجتماعي.</p>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" class="card-img-top" alt="د. أحمد محمود">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">د. أحمد محمود</h5>
-                                <p class="specialization">أخصائي نفسي إكلينيكي</p>
-                                <p class="card-text">متخصص في العلاج المعرفي السلوكي ومعالجة الصدمات النفسية.</p>
-                                <a href="#" class="btn btn-secondary mt-2">حجز موعد</a>
+                    @forelse($specialists as $index => $specialist)
+                        <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp" @if($index % 3 == 1) data-wow-delay="0.2s" @elseif($index % 3 == 2) data-wow-delay="0.4s" @endif>
+                            <div class="card specialist-card h-100">
+                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop' }}" class="card-img-top" alt="{{ $specialist->name }}">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">{{ $specialist->name }}</h5>
+                                    <p class="specialization">{{ $specialist->speciality?->name }}</p>
+                                    <p class="card-text">{{ Str::limit($specialist->bio ?? '—', 120) }}</p>
+                                    <a href="#" class="btn btn-secondary mt-2" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>حجز موعد</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="أ. فاطمة علي">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">أ. فاطمة علي</h5>
-                                <p class="specialization">مرشدة اجتماعية ومهنية</p>
-                                <p class="card-text">خبيرة في تطوير المهارات الحياتية وتصميم المسارات المهنية للشباب.</p>
-                                <a href="#" class="btn btn-secondary mt-2">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
-                        <div class="card specialist-card">
-                            <img src="https://plus.unsplash.com/premium_photo-1661764907034-7a3b3127a555?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="د. يوسف إبراهيم">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">د. يوسف إبراهيم</h5>
-                                <p class="specialization">طبيب نفسي</p>
-                                <p class="card-text">متخصص في إدارة الضغوط النفسية والقلق وتقديم الاستشارات الدوائية.</p>
-                                <a href="#" class="btn btn-secondary mt-2">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        <div class="text-center text-muted">لا يوجد أخصائيون متاحون حالياً.</div>
+                    @endforelse
+                </div>
+                <div class="text-center mt-4">
+                    <a href="/specialists" class="btn btn-primary">عرض المزيد من الأخصائيين</a>
                 </div>
             </div>
         </section>
 
-        <section id="events">
+        <section id="programs">
             <div class="container">
                 <h2 class="section-title text-center">جلسات وفعاليات هذا الأسبوع</h2>
                 <div class="list-group list-group-flush col-lg-8 mx-auto">
-                    <div class="list-group-item p-4 mb-3 event-item wow animate__animated animate__fadeInRight">
-                        <div class="d-flex w-100 justify-content-between align-items-center">
-                            <div>
-                                <h5><i class="fas fa-chalkboard-teacher text-primary me-2"></i> ورشة عمل: كيف تبني سيرتك الذاتية؟ (حضوري/أونلاين)</h5>
-                                <p class="mb-1 text-muted"><i class="fas fa-calendar-alt me-2"></i>الثلاثاء، 25 أكتوبر <i class="fas fa-clock ms-3 me-2"></i>06:00 مساءً</p>
+                    @forelse($programs as $i => $program)
+                        <div class="list-group-item p-4 mb-3 event-item wow animate__animated animate__fadeInRight" @if($i % 2 == 1) data-wow-delay="0.2s" @endif>
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <div>
+                                    <h5>
+                                        <i class="fas {{ $program->is_online ? 'fa-chalkboard-teacher text-primary' : 'fa-users text-success' }} me-2"></i>
+                                        {{ $program->title }} {{ $program->is_online ? '(أونلاين)' : '(حضوري)' }}
+                                    </h5>
+                                    <p class="mb-1 text-muted">
+                                        <i class="fas fa-calendar-alt me-2"></i>{{ \Carbon\Carbon::parse($program->date)->translatedFormat('l، d F') }}
+                                        <span class="ms-3">
+                                            <i class="fas fa-user me-2"></i>{{ $program->specialist?->name }}
+                                        </span>
+                                        <span class="ms-3">
+                                            <i class="fas fa-tags me-2"></i>{{ $program->category?->name }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <a href="#" class="btn btn-secondary" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>انضم الآن</a>
                             </div>
-                            <a href="#" class="btn btn-secondary">انضم الآن</a>
                         </div>
-                    </div>
-                    <div class="list-group-item p-4 mb-3 event-item wow animate__animated animate__fadeInRight" data-wow-delay="0.2s">
-                        <div class="d-flex w-100 justify-content-between align-items-center">
-                            <div>
-                                <h5><i class="fas fa-users text-success me-2"></i> جلسة حوار جماعية: التعامل مع ضغوط المجتمع (حضوري)</h5>
-                                <p class="mb-1 text-muted"><i class="fas fa-calendar-alt me-2"></i>الخميس، 27 أكتوبر <i class="fas fa-clock ms-3 me-2"></i>07:00 مساءً</p>
-                            </div>
-                            <a href="#" class="btn btn-secondary">انضم الآن</a>
-                        </div>
-                    </div>
+                    @empty
+                        <div class="text-center text-muted">لا توجد فعاليات حالياً.</div>
+                    @endforelse
+                </div>
+                <div class="text-center mt-4">
+                    <a href="/programs" class="btn btn-primary">عرض المزيد من الجلسات والفعاليات</a>
                 </div>
             </div>
         </section>

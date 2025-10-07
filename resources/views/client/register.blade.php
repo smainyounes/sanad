@@ -136,22 +136,42 @@
                         <p class="text-muted">انضم إلينا وابدأ رحلتك نحو التغيير.</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{ route('register.post') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="registerName" class="form-label">الاسم الكامل</label>
-                                <input type="text" class="form-control" id="registerName" placeholder="مثال: أحمد محمد" required>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="registerName" placeholder="مثال: أحمد محمد" required>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="registerEmail" class="form-label">البريد الإلكتروني</label>
-                                <input type="email" class="form-control" id="registerEmail" placeholder="example@email.com" required>
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="registerEmail" placeholder="example@email.com" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerType" class="form-label">نوع المستخدم</label>
+                                <select id="registerType" name="type" class="form-control @error('type') is-invalid @enderror" required>
+                                    <option value="student" @selected(old('type')==='student')>طالب</option>
+                                    <option value="parent" @selected(old('type')==='parent')>ولي أمر</option>
+                                </select>
+                                @error('type')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="registerPassword" class="form-label">كلمة المرور</label>
-                                <input type="password" class="form-control" id="registerPassword" required>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="registerPassword" required>
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-4">
                                 <label for="registerConfirmPassword" class="form-label">تأكيد كلمة المرور</label>
-                                <input type="password" class="form-control" id="registerConfirmPassword" required>
+                                <input type="password" name="password_confirmation" class="form-control" id="registerConfirmPassword" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">إنشاء الحساب</button>
                         </form>

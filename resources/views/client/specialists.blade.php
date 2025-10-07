@@ -48,6 +48,33 @@
 
     </style>
 @endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.filter-buttons .btn');
+            const items = document.querySelectorAll('.specialist-item');
+
+            function updateView() {
+                const activeBtn = document.querySelector('.filter-buttons .btn.active');
+                const filter = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+
+                items.forEach((item) => {
+                    const category = item.getAttribute('data-category');
+                    const matches = filter === 'all' || category === filter;
+                    item.style.display = matches ? 'block' : 'none';
+                });
+            }
+
+            buttons.forEach((btn) => {
+                btn.addEventListener('click', function () {
+                    buttons.forEach((b) => b.classList.remove('active'));
+                    this.classList.add('active');
+                    updateView();
+                });
+            });
+        });
+    </script>
+@endsection
 
 @section('content')
      <!-- PAGE HEADER -->
@@ -66,87 +93,70 @@
                 <div class="row">
                     <div class="col-12 text-center filter-buttons wow animate__animated animate__fadeInUp">
                         <button class="btn active" data-filter="all">الكل</button>
-                        <button class="btn" data-filter="psychologist">أخصائي نفسي</button>
-                        <button class="btn" data-filter="social">مرشد اجتماعي</button>
-                        <button class="btn" data-filter="vocational">مدرب مهني</button>
+                        @foreach($specialities as $sp)
+                            <button class="btn" data-filter="speciality-{{ $sp->id }}">{{ $sp->name }}</button>
+                        @endforeach
                     </div>
                 </div>
 
                 <div class="row g-4 justify-content-center">
-                    <!-- Specialist Card 1 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-category="psychologist">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop" class="card-img-top" alt="د. أحمد محمود">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">د. أحمد محمود</h5>
-                                <p class="specialization">أخصائي نفسي إكلينيكي</p>
-                                <p class="card-text text-muted">متخصص في علاج الصدمات النفسية وبناء الثقة بالنفس لدى المراهقين.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
+                    @forelse($specialists as $index => $specialist)
+                        <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" @if($index % 3 == 1) data-wow-delay="0.1s" @elseif($index % 3 == 2) data-wow-delay="0.2s" @endif data-category="speciality-{{ $specialist->speciality?->id ?? 'all' }}">
+                            <div class="card specialist-card h-100">
+                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop' }}" class="card-img-top" alt="{{ $specialist->name }}">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h5 class="card-title">{{ $specialist->name }}</h5>
+                                    <p class="specialization">{{ $specialist->speciality?->name }}</p>
+                                    <p class="card-text text-muted">{{ Str::limit($specialist->bio ?? '—', 160) }}</p>
+                                    <button class="btn btn-secondary mt-3 mt-auto" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>حجز موعد</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Specialist Card 2 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-wow-delay="0.1s" data-category="social">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto-format&fit=crop" class="card-img-top" alt="أ. فاطمة علي">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">أ. فاطمة علي</h5>
-                                <p class="specialization">مرشدة اجتماعية</p>
-                                <p class="card-text text-muted">تساعد الشباب على تطوير المهارات الحياتية واكتشاف مسارهم المهني.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Specialist Card 3 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-wow-delay="0.2s" data-category="psychologist">
-                        <div class="card specialist-card">
-                            <img src="https://plus.unsplash.com/premium_photo-1661764907034-7a3b3127a555?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="د. يوسف إبراهيم">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">د. يوسف إبراهيم</h5>
-                                <p class="specialization">طبيب نفسي</p>
-                                <p class="card-text text-muted">خبير في إدارة القلق والضغوطات النفسية وتقديم الدعم الدوائي اللازم.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Specialist Card 4 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-category="vocational">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1580894908361-967195033215?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="أ. ليلى كريم">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">أ. ليلى كريم</h5>
-                                <p class="specialization">مدربة مهارات مهنية</p>
-                                <p class="card-text text-muted">متخصصة في ورش عمل السيرة الذاتية والمقابلات الشخصية والتوجيه المهني.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Specialist Card 5 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-wow-delay="0.1s" data-category="social">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="أ. كريم بن علي">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">أ. كريم بن علي</h5>
-                                <p class="specialization">مرشد اجتماعي</p>
-                                <p class="card-text text-muted">يعمل على تسهيل الاندماج الأسري والمجتمعي وحل النزاعات.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Specialist Card 6 -->
-                    <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-wow-delay="0.2s" data-category="psychologist">
-                        <div class="card specialist-card">
-                            <img src="https://images.unsplash.com/photo-1622253692010-33352da69e0d?q=80&w=1887&auto=format&fit=crop" class="card-img-top" alt="د. أمينة حداد">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">د. أمينة حداد</h5>
-                                <p class="specialization">أخصائية نفسية</p>
-                                <p class="card-text text-muted">خبيرة في العلاج السلوكي المعرفي (CBT) للشباب والمراهقين.</p>
-                                <a href="#" class="btn btn-secondary mt-3">حجز موعد</a>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        <div class="text-center text-muted">لا يوجد أخصائيون متاحون حالياً.</div>
+                    @endforelse
+                </div>
+                <div class="mt-5 wow animate__animated animate__fadeInUp">
+                    {{ $specialists->links() }}
                 </div>
             </div>
         </section>
     </main>
+    <!-- RESERVATION MODAL (same as programs page) -->
+    <div class="modal fade" id="reserveModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">طرق الحجز والتواصل</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center text-muted">للحجز أو الاستفسار، يرجى التواصل معنا عبر إحدى القنوات التالية:</p>
+                    <div class="list-group list-group-flush text-center contact-modal-list">
+                        <a href="tel:+213551234567" class="list-group-item list-group-item-action"><i class="fas fa-phone"></i> اتصال هاتفي مباشر</a>
+                        <a href="https://wa.me/213551234567" target="_blank" class="list-group-item list-group-item-action"><i class="fab fa-whatsapp" style="color:#25D366;"></i> محادثة عبر واتساب</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN REQUIRED MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">الرجاء تسجيل الدخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="text-muted mb-4">لتتمكن من الحجز، يرجى تسجيل الدخول إلى حسابك.</p>
+                    <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">تسجيل الدخول</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-primary w-100">إنشاء حساب جديد</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

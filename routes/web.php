@@ -1,24 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProfileController;
 
-Route::get('/', function () {
-    return view('client.home');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 
-Route::get('/specialists', function () {
-    return view('client.specialists');
-})->name('specialists');
+Route::get('/specialists', [HomeController::class, 'specialists'])->name('specialists');
 
-Route::view('/login', 'client.login')->name('login');
+Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->middleware('guest')->name('login');
+Route::post('/login', [ClientAuthController::class, 'login'])->middleware('guest')->name('login.post');
+Route::post('/logout', [ClientAuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::view('/register', 'client.register')->name('register');
+Route::view('/register', 'client.register')->middleware('guest')->name('register');
+Route::post('/register', [ClientAuthController::class, 'register'])->middleware('guest')->name('register.post');
 
-Route::view('/programs', 'client.programs')->name('programs');
+Route::view('/profile', 'client.profile')->middleware('auth')->name('profile');
+
+Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
 
 Route::view('/aboutus', 'client.aboutus')->name('aboutus');
 
