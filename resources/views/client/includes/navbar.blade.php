@@ -24,7 +24,7 @@
                         {{ auth()->user()->name }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{{ route('profile') }}">صفحتي</a></li>
+                        <li><a class="dropdown-item" href="{{ route('client.profile') }}">صفحتي</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class="px-3 py-1">

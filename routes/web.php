@@ -20,7 +20,11 @@ Route::post('/logout', [ClientAuthController::class, 'logout'])->middleware('aut
 Route::view('/register', 'client.register')->middleware('guest')->name('register');
 Route::post('/register', [ClientAuthController::class, 'register'])->middleware('guest')->name('register.post');
 
-Route::view('/profile', 'client.profile')->middleware('auth')->name('profile');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('client.profile');
+    Route::post('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('client.profile.update');
+});
+
 
 Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
 
