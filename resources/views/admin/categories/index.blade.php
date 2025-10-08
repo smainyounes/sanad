@@ -13,8 +13,8 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-bordered table-striped align-middle text-center">
-            <thead>
+        <table class="table table-striped text-center align-middle">
+            <thead class="thead-dark">
                 <tr>
                     <th>#</th>
                     <th>الاسم</th>

@@ -7,47 +7,49 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createSpecialistModal">+ إضافة</button>
     </div>
 
-    <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>الصورة</th>
-                <th>الاسم</th>
-                <th>البريد الإلكتروني</th>
-                <th>التخصص</th>
-                <th>السيرة</th>
-                <th>الإجراءات</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($specialists as $specialist)
+    <div class="table-responsive">
+        <table class="table table-striped text-center align-middle">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ $specialist->id }}</td>
-                    <td>
-                        @if($specialist->image)
-                            <img src="{{ asset($specialist->image) }}" alt="" width="60" height="60" class="rounded-circle object-fit-cover">
-                        @else
-                            <span class="text-muted">لا توجد</span>
-                        @endif
-                    </td>
-                    <td>{{ $specialist->name }}</td>
-                    <td>{{ $specialist->email }}</td>
-                    <td>{{ $specialist->speciality?->name }}</td>
-                    <td>{{ Str::limit($specialist->bio, 50) }}</td>
-                    <td>
-                        <a href="{{ route('admin.specialists.edit', $specialist->id) }}" class="btn btn-sm btn-warning">تعديل</a>
-                        <form action="{{ route('admin.specialists.destroy', $specialist->id) }}" method="POST" class="d-inline" onsubmit="return confirm('حذف هذا الأخصائي؟');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger">حذف</button>
-                        </form>
-                    </td>
+                    <th>#</th>
+                    <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>التخصص</th>
+                    <th>السيرة</th>
+                    <th>الإجراءات</th>
                 </tr>
-            @empty
-                <tr><td colspan="7" class="text-center text-muted">لا يوجد أخصائيون.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($specialists as $specialist)
+                    <tr>
+                        <td>{{ $specialist->id }}</td>
+                        <td>
+                            @if($specialist->image)
+                                <img src="{{ asset($specialist->image) }}" alt="" width="60" height="60" class="rounded-circle object-fit-cover">
+                            @else
+                                <span class="text-muted">لا توجد</span>
+                            @endif
+                        </td>
+                        <td>{{ $specialist->name }}</td>
+                        <td>{{ $specialist->email }}</td>
+                        <td>{{ $specialist->speciality?->name }}</td>
+                        <td>{{ Str::limit($specialist->bio, 50) }}</td>
+                        <td>
+                            <a href="{{ route('admin.specialists.edit', $specialist->id) }}" class="btn btn-sm btn-warning">تعديل</a>
+                            <form action="{{ route('admin.specialists.destroy', $specialist->id) }}" method="POST" class="d-inline" onsubmit="return confirm('حذف هذا الأخصائي؟');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger">حذف</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="7" class="text-center text-muted">لا يوجد أخصائيون.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
     <div class="mt-3">
         {{ $specialists->links() }}

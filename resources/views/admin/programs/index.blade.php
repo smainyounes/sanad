@@ -6,53 +6,55 @@
         <h4>قائمة البرامج</h4>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProgramModal">+ إضافة</button>
     </div>
-
-    <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>العنوان</th>
-                <th>الفئة</th>
-                <th>الأخصائي</th>
-                <th>التاريخ</th>
-                <th>أونلاين</th>
-                <th>الحالة</th>
-                <th>الإجراءات</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($programs as $program)
+    
+    <div class="table-responsive">
+        <table class="table table-striped text-center align-middle">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ $program->id }}</td>
-                    <td>{{ $program->title }}</td>
-                    <td>{{ $program->category?->name }}</td>
-                    <td>{{ $program->specialist?->name }}</td>
-                    <td>{{ $program->date }}</td>
-                    <td>
-                        <span class="badge {{ $program->is_online ? 'bg-success' : 'bg-secondary' }}">
-                            {{ $program->is_online ? 'نعم' : 'لا' }}
-                        </span>
-                    </td>
-                    <td>
-                        <span class="badge {{ $program->status == 'active' ? 'bg-success' : 'bg-danger' }}">
-                            {{ $program->status == 'active' ? 'نشط' : 'معطل' }}
-                        </span>
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.programs.edit', $program->id) }}" class="btn btn-sm btn-warning">تعديل</a>
-                        <form action="{{ route('admin.programs.destroy', $program->id) }}" method="POST" class="d-inline"
-                              onsubmit="return confirm('حذف هذا البرنامج؟');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger">حذف</button>
-                        </form>
-                    </td>
+                    <th>#</th>
+                    <th>العنوان</th>
+                    <th>الفئة</th>
+                    <th>الأخصائي</th>
+                    <th>التاريخ</th>
+                    <th>أونلاين</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
                 </tr>
-            @empty
-                <tr><td colspan="8" class="text-center text-muted">لا توجد برامج.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($programs as $program)
+                    <tr>
+                        <td>{{ $program->id }}</td>
+                        <td>{{ $program->title }}</td>
+                        <td>{{ $program->category?->name }}</td>
+                        <td>{{ $program->specialist?->name }}</td>
+                        <td>{{ $program->date }}</td>
+                        <td>
+                            <span class="badge {{ $program->is_online ? 'bg-success' : 'bg-secondary' }}">
+                                {{ $program->is_online ? 'نعم' : 'لا' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge {{ $program->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $program->status == 'active' ? 'نشط' : 'معطل' }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.programs.edit', $program->id) }}" class="btn btn-sm btn-warning">تعديل</a>
+                            <form action="{{ route('admin.programs.destroy', $program->id) }}" method="POST" class="d-inline"
+                                  onsubmit="return confirm('حذف هذا البرنامج؟');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger">حذف</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="8" class="text-center text-muted">لا توجد برامج.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
     <div class="mt-3">
         {{ $programs->links() }}

@@ -13,6 +13,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('aboutus') }}">عن المنصة</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('services') }}">خدماتنا</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('specialists') }}">الأخصائيون</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('programs') }}">الجلسات</a></li>
                 {{-- <li class="nav-item"><a class="nav-link" href="/#how-it-works">آلية العمل</a></li>
                 <li class="nav-item"><a class="nav-link" href="/#testimonials">قصص نجاح</a></li> --}}
                 <li class="nav-item"><a class="nav-link" href="{{ route('contactus') }}">التواصل والمقر</a></li>

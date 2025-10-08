@@ -13,50 +13,52 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered table-striped align-middle text-center">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>اسم التخصص</th>
-                <th>تاريخ الإنشاء</th>
-                <th width="180">الإجراءات</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($specialities as $speciality)
+    <div class="table-responsive">
+        <table class="table table-striped text-center align-middle">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ $speciality->id }}</td>
-                    <td>{{ $speciality->name }}</td>
-                    <td>{{ $speciality->created_at->format('Y-m-d') }}</td>
-                    <td>
-                        <button 
-                            class="btn btn-sm btn-warning edit-btn" 
-                            data-id="{{ $speciality->id }}" 
-                            data-name="{{ $speciality->name }}"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editModal">
-                            تعديل
-                        </button>
-
-                        <form action="{{ route('admin.specialities.destroy', $speciality->id) }}" 
-                              method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
+                    <th>#</th>
+                    <th>اسم التخصص</th>
+                    <th>تاريخ الإنشاء</th>
+                    <th width="180">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($specialities as $speciality)
+                    <tr>
+                        <td>{{ $speciality->id }}</td>
+                        <td>{{ $speciality->name }}</td>
+                        <td>{{ $speciality->created_at->format('Y-m-d') }}</td>
+                        <td>
                             <button 
-                                class="btn btn-sm btn-danger"
-                                onclick="return confirm('هل أنت متأكد من حذف هذا التخصص؟')">
-                                حذف
+                                class="btn btn-sm btn-warning edit-btn" 
+                                data-id="{{ $speciality->id }}" 
+                                data-name="{{ $speciality->name }}"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editModal">
+                                تعديل
                             </button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="4" class="text-center text-muted">لا توجد تخصصات حالياً</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+    
+                            <form action="{{ route('admin.specialities.destroy', $speciality->id) }}" 
+                                  method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('هل أنت متأكد من حذف هذا التخصص؟')">
+                                    حذف
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">لا توجد تخصصات حالياً</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
     {{ $specialities->links() }}
 </div>
