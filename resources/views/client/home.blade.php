@@ -37,7 +37,7 @@
         <!-- 2. ABOUT THE PROJECT -->
         <section id="about">
             <div class="container">
-                <div class="row align-items-center g-5">
+                <div class="row align-items-center g-4">
                     <div class="col-lg-6 ">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="فريق عمل متعاون" class="img-fluid rounded-3 shadow-lg">
                     </div>
@@ -193,7 +193,7 @@
             <div class="container text-center">
                 <h2 class="section-title">آلية العمل في 4 خطوات</h2>
                 <p class="section-subtitle">نظامنا مصمم ليكون سلساً ومباشراً، لتسهيل وصولكم إلى الدعم المطلوب في أسرع وقت.</p>
-                <div class="row g-5 timeline">
+                <div class="row g-4 timeline">
                     <div class="col-md-3 wow animate__animated animate__fadeInUp">
                         <div class="how-it-works-step">
                             <div class="step-number">1</div>
