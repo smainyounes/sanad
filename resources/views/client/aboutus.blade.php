@@ -68,7 +68,7 @@
             <div class="container">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 wow animate__animated animate__fadeInRight">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="فريق عمل سند" class="img-fluid rounded-3 shadow-lg">
+                        <img src="/images/488681785_2666456956897469_4886976599475886734_n.jpg" alt="فريق عمل سند" class="img-fluid rounded-3 shadow-lg">
                     </div>
                     <div class="col-lg-6 wow animate__animated animate__fadeInLeft">
                         <h2 class="section-title text-center mb-4" style="">من نحن؟</h2>

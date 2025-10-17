@@ -59,7 +59,7 @@
     
     /* Hero Section */
     .hero-section {
-        background: linear-gradient(rgba(248, 249, 250, 0.8), rgba(248, 249, 250, 0.8)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop') no-repeat center center;
+        background: linear-gradient(rgba(248, 249, 250, 0.8), rgba(248, 249, 250, 0.8)), url('/images/1489078018_58c18702e60bc.jpeg') no-repeat center center;
         background-size: cover;
         min-height: 90vh;
         display: flex;

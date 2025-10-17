@@ -112,7 +112,7 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow animate__animated animate__fadeInRight">
-                        <img src="https://images.unsplash.com/photo-1573166599298-359336b90a68?q=80&w=2069&auto=format&fit=crop" alt="التأهيل النفسي والاجتماعي" class="img-fluid service-image">
+                        <img src="/images/shutterstock_674004631-2048x1365.jpeg" alt="التأهيل النفسي والاجتماعي" class="img-fluid service-image">
                     </div>
                     <div class="col-lg-6 wow animate__animated animate__fadeInLeft">
                         <h2 class="service-title">الدعم النفسي والاجتماعي</h2>
@@ -136,7 +136,7 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 order-lg-2 wow animate__animated animate__fadeInLeft">
-                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" alt="التأهيل المهني والتدريب" class="img-fluid service-image">
+                        <img src="/images/freepik__a-dualthemed-image-on-one-side-students-attending-__69957.webp" alt="التأهيل المهني والتدريب" class="img-fluid service-image">
                     </div>
                     <div class="col-lg-6 order-lg-1 wow animate__animated animate__fadeInRight">
                         <h2 class="service-title">التأهيل والتوجيه المهني</h2>
@@ -160,7 +160,7 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow animate__animated animate__fadeInRight">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="الأنشطة الاجتماعية والثقافية" class="img-fluid service-image">
+                        <img src="/images/iStock-1278978403-1536x1024.webp" alt="الأنشطة الاجتماعية والثقافية" class="img-fluid service-image">
                     </div>
                     <div class="col-lg-6 wow animate__animated animate__fadeInLeft">
                         <h2 class="service-title">الأنشطة الاجتماعية والثقافية</h2>

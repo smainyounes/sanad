@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-6 ">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="فريق عمل متعاون" class="img-fluid rounded-3 shadow-lg">
+                        <img src="/images/Depositphotos_267391912_XL-1200x800.jpg" alt="فريق عمل متعاون" class="img-fluid rounded-3 shadow-lg">
                     </div>
                     <div class="col-lg-6 ">
                         <h2 class="section-title text-center mb-4">رسالتنا ورؤيتنا</h2>
