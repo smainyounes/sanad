@@ -12,6 +12,9 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Route::get('/specialists', [HomeController::class, 'specialists'])->name('specialists');
+Route::middleware('auth')->post('/specialist-reservations', [\App\Http\Controllers\SpecialistReservationController::class, 'store'])
+    ->name('specialist-reservations.store');
+
 
 Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [ClientAuthController::class, 'login'])->middleware('guest')->name('login.post');
@@ -27,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
+Route::middleware('auth')->post('/program-reservations', [\App\Http\Controllers\ProgramReservationController::class, 'store'])
+    ->name('program-reservations.store');
+
 
 Route::view('/aboutus', 'client.aboutus')->name('aboutus');
 
@@ -54,7 +60,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/updatepassword', [ProfileController::class, 'updatePassword'])->name('admin.profile.password');
     });
 
-    Route::prefix('admins')->group(function () {
+    Route::prefix('admins')->middleware('auth:admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admins.index');       // List all admins
         Route::get('/create', [AdminController::class, 'create'])->name('admins.create'); // Show create form
         Route::post('/', [AdminController::class, 'store'])->name('admins.store');       // Store new admin
@@ -73,18 +79,39 @@ Route::prefix('admin')->group(function () {
     // resend admin invitation
     Route::post('/admin/resend/invitation/{id}', [AdminController::class, 'regenInviteToken'])->middleware('guest')->name('admin.regenInviteToken');
 
-    Route::get('contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
-    Route::get('contacts/{id}', [ContactController::class, 'show'])->name('admin.contacts.show');
-    Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
+    Route::get('contacts', [ContactController::class, 'index'])->name('admin.contacts.index')->middleware('auth:admin');
+    Route::get('contacts/{id}', [ContactController::class, 'show'])->name('admin.contacts.show')->middleware('auth:admin');
+    Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy')->middleware('auth:admin');
 
     // Route::resource('admins', AdminController::class);
     Route::name('admin.')->group(function () {
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->middleware('auth:admin');
         Route::resource('specialities', \App\Http\Controllers\Admin\SpecialityController::class)->middleware('auth:admin');
         Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class)->middleware('auth:admin');
-        Route::resource('programs', App\Http\Controllers\Admin\ProgramController::class)->middleware('auth:admin');
-        Route::resource('specialists', App\Http\Controllers\Admin\SpecialistController::class)->middleware('auth:admin');
+        Route::resource('programs', \App\Http\Controllers\Admin\ProgramController::class)->middleware('auth:admin');
+        Route::resource('specialists', \App\Http\Controllers\Admin\SpecialistController::class)->middleware('auth:admin');
 
     });
 
+    
+    Route::prefix('/reservations')->middleware(['auth:admin'])->group(function () {
+        // Admin reservations page
+        Route::get('/', [\App\Http\Controllers\Admin\AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    
+        // AJAX routes
+        Route::get('/specialists', [\App\Http\Controllers\Admin\AdminReservationController::class, 'getSpecialistReservations'])->name('admin.reservations.specialists');
+        Route::get('/programs', [\App\Http\Controllers\Admin\AdminReservationController::class, 'getProgramReservations'])->name('admin.reservations.programs');
+        
+        // Specialist reservations
+        Route::get('specialists/{id}/edit', [\App\Http\Controllers\Admin\AdminReservationController::class, 'editSpecialist'])->name('admin.reservations.specialists.edit');
+        Route::post('specialists/{id}/update', [\App\Http\Controllers\Admin\AdminReservationController::class, 'updateSpecialist'])->name('admin.reservations.specialists.update');
+    
+        // Program reservations
+        Route::get('programs/{id}/edit', [\App\Http\Controllers\Admin\AdminReservationController::class, 'editProgram'])->name('admin.reservations.programs.edit');
+        Route::post('programs/{id}/update', [\App\Http\Controllers\Admin\AdminReservationController::class, 'updateProgram'])->name('admin.reservations.programs.update');
+        
+        Route::delete('/specialists/{id}', [\App\Http\Controllers\Admin\AdminReservationController::class, 'deleteSpecialist'])->name('admin.reservations.specialists.delete');
+        Route::delete('/programs/{id}', [\App\Http\Controllers\Admin\AdminReservationController::class, 'deleteProgram'])->name('admin.reservations.programs.delete');
+
+    });
 });

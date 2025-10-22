@@ -101,14 +101,36 @@
 
                 <div class="row g-4 justify-content-center">
                     @forelse($specialists as $index => $specialist)
-                        <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" @if($index % 3 == 1) data-wow-delay="0.1s" @elseif($index % 3 == 2) data-wow-delay="0.2s" @endif data-category="speciality-{{ $specialist->speciality?->id ?? 'all' }}">
+                        <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp"
+                            @if($index % 3 == 1) data-wow-delay="0.1s"
+                            @elseif($index % 3 == 2) data-wow-delay="0.2s"
+                            @endif
+                            data-category="speciality-{{ $specialist->speciality?->id ?? 'all' }}">
+                            
                             <div class="card specialist-card h-100">
-                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop' }}" class="card-img-top" alt="{{ $specialist->name }}">
-                                <div class="card-body p-4 d-flex flex-column">
+                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop' }}"
+                                    class="card-img-top"
+                                    alt="{{ $specialist->name }}">
+
+                                <div class="card-body p-4 d-flex flex-column text-end">
                                     <h5 class="card-title">{{ $specialist->name }}</h5>
-                                    <p class="specialization">{{ $specialist->speciality?->name }}</p>
+                                    <p class="specialization text-muted mb-1">{{ $specialist->speciality?->name }}</p>
                                     <p class="card-text text-muted">{{ Str::limit($specialist->bio ?? '—', 160) }}</p>
-                                    <button class="btn btn-secondary mt-3 mt-auto" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>حجز موعد</button>
+
+                                    @auth
+                                        <button type="button"
+                                                class="btn btn-secondary mt-3 mt-auto w-100"
+                                                onclick="openReservationModal({{ $specialist->id }})">
+                                            حجز موعد
+                                        </button>
+                                    @else
+                                        <button type="button"
+                                                class="btn btn-secondary mt-3 mt-auto w-100"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#loginModal">
+                                            تسجيل الدخول للحجز
+                                        </button>
+                                    @endauth
                                 </div>
                             </div>
                         </div>

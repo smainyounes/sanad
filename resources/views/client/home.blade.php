@@ -132,20 +132,40 @@
                 <p class="section-subtitle text-center">نفخر بفريقنا من الخبراء والمستشارين المتخصصين في مختلف مجالات الدعم النفسي والاجتماعي.</p>
                 <div class="row g-4 justify-content-center">
                     @forelse($specialists as $index => $specialist)
-                        <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp" @if($index % 3 == 1) data-wow-delay="0.2s" @elseif($index % 3 == 2) data-wow-delay="0.4s" @endif>
-                            <div class="card specialist-card h-100">
-                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop' }}" class="card-img-top" alt="{{ $specialist->name }}">
-                                <div class="card-body p-4">
-                                    <h5 class="card-title">{{ $specialist->name }}</h5>
-                                    <p class="specialization">{{ $specialist->speciality?->name }}</p>
-                                    <p class="card-text">{{ Str::limit($specialist->bio ?? '—', 120) }}</p>
-                                    <a href="#" class="btn btn-secondary mt-2" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>حجز موعد</a>
-                                </div>
+                    <div class="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp"
+                         @if($index % 3 == 1) data-wow-delay="0.2s"
+                         @elseif($index % 3 == 2) data-wow-delay="0.4s"
+                         @endif>
+                        <div class="card specialist-card h-100">
+                            <img src="{{ $specialist->image ? asset($specialist->image) : 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop' }}"
+                                 class="card-img-top"
+                                 alt="{{ $specialist->name }}">
+                
+                            <div class="card-body p-4 text-end">
+                                <h5 class="card-title">{{ $specialist->name }}</h5>
+                                <p class="specialization text-muted mb-1">{{ $specialist->speciality?->name }}</p>
+                                <p class="card-text">{{ Str::limit($specialist->bio ?? '—', 120) }}</p>
+                
+                                @auth
+                                    <button type="button"
+                                            class="btn btn-secondary mt-2 w-100"
+                                            onclick="openReservationModal({{ $specialist->id }})">
+                                        حجز موعد
+                                    </button>
+                                @else
+                                    <button type="button"
+                                            class="btn btn-secondary mt-2 w-100"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">
+                                        تسجيل الدخول للحجز
+                                    </button>
+                                @endauth
                             </div>
                         </div>
-                    @empty
-                        <div class="text-center text-muted">لا يوجد أخصائيون متاحون حالياً.</div>
-                    @endforelse
+                    </div>
+                @empty
+                    <div class="text-center text-muted">لا يوجد أخصائيون متاحون حالياً.</div>
+                @endforelse
                 </div>
                 <div class="text-center mt-4">
                     <a href="/specialists" class="btn btn-primary">عرض المزيد من الأخصائيين</a>
@@ -175,7 +195,22 @@
                                         </span>
                                     </p>
                                 </div>
-                                <a href="#" class="btn btn-secondary" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>انضم الآن</a>
+                                @auth
+                                    <button type="button"
+                                            class="btn btn-secondary mt-2 "
+                                            onclick="openProgramReservationModal({{ $program->id }})">
+                                        حجز البرنامج
+                                    </button>
+                                @else
+                                    <button type="button"
+                                            class="btn btn-secondary mt-2 "
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">
+                                        تسجيل الدخول للحجز
+                                    </button>
+                                @endauth
+                            
+                                {{-- <a href="#" class="btn btn-secondary" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>انضم الآن</a> --}}
                             </div>
                         </div>
                     @empty

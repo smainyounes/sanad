@@ -40,6 +40,14 @@
                         <p>العملاء</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.reservations.index') }}">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <p>الحجوزات</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('admin.specialities.index') }}">
                         <i class="fa-solid fa-book-open-reader"></i>

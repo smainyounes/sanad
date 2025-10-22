@@ -20,6 +20,9 @@
     <!-- 12. FOOTER -->
     @include('client.includes.footer')
 
+    <!-- reserve specialist modal -->
+    @include('client.includes.specialistModal')
+
     @include('client.includes.scripts')
     
 </body>

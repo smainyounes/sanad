@@ -196,7 +196,22 @@
                                         <span><i class="fas fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($program->date)->translatedFormat('d F Y') }}</span>
                                         <span><i class="fas fa-user-tie"></i> {{ $program->specialist?->name }}</span>
                                     </div>
-                                    <button class="btn btn-secondary w-100" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>احجز الآن</button>
+                                    @auth
+                                        <button type="button"
+                                                class="btn btn-secondary mt-2 w-100"
+                                                onclick="openProgramReservationModal({{ $program->id }})">
+                                            حجز البرنامج
+                                        </button>
+                                    @else
+                                        <button type="button"
+                                                class="btn btn-secondary mt-2 w-100"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#loginModal">
+                                            تسجيل الدخول للحجز
+                                        </button>
+                                    @endauth
+
+                                    {{-- <button class="btn btn-secondary w-100" data-bs-toggle="modal" @auth data-bs-target="#reserveModal" @else data-bs-target="#loginModal" @endauth>احجز الآن</button> --}}
                                 </div>
                             </div>
                         </div>
