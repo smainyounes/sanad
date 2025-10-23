@@ -22,7 +22,10 @@
 
     <!-- reserve specialist modal -->
     @include('client.includes.specialistModal')
-
+    
+    <!-- reserve program modal -->
+    @include('client.includes.programModal')
+    
     @include('client.includes.scripts')
     
 </body>
