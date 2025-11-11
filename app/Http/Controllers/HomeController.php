@@ -23,7 +23,7 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('client.home', compact('specialists', 'programs'));
+        return view('client_new.home', compact('specialists', 'programs'));
     }
 
     public function programs(Request $request)
@@ -32,7 +32,7 @@ class HomeController extends Controller
             ->orderBy('date', 'asc')
             ->paginate(8);
 
-        return view('client.programs', compact('programs'));
+        return view('client_new.programs', compact('programs'));
     }
 
     public function specialists(Request $request)
@@ -44,7 +44,7 @@ class HomeController extends Controller
 
         $specialities = Speciality::orderBy('id')->get();
 
-        return view('client.specialists', compact('specialists', 'specialities'));
+        return view('client_new.specialists', compact('specialists', 'specialities'));
     }
 
     public function contactSubmit(Request $request)

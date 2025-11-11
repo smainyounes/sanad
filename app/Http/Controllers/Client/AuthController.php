@@ -16,7 +16,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return view('client.login');
+        return view('client_new.login');
     }
 
     public function login(Request $request)

@@ -22,7 +22,7 @@ Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->middleware
 Route::post('/login', [ClientAuthController::class, 'login'])->middleware('guest')->name('login.post');
 Route::post('/logout', [ClientAuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::view('/register', 'client.register')->middleware('guest')->name('register');
+Route::view('/register', 'client_new.register')->middleware('guest')->name('register');
 Route::post('/register', [ClientAuthController::class, 'register'])->middleware('guest')->name('register.post');
 
 Route::middleware(['auth'])->group(function () {
@@ -36,13 +36,13 @@ Route::middleware('auth')->post('/program-reservations', [\App\Http\Controllers\
     ->name('program-reservations.store');
 
 
-Route::view('/aboutus', 'client.aboutus')->name('aboutus');
+Route::view('/aboutus', 'client_new.aboutus')->name('aboutus');
 
-Route::view('/contactus', 'client.contactus')->name('contactus');
+Route::view('/contactus', 'client_new.contactus')->name('contactus');
 Route::post('/contactus', [HomeController::class, 'contactSubmit']);
 
-Route::view('/services', 'client.services')->name('services');
-Route::view('/privacy-policy', 'client.privacy-policy')->name('privacy-policy');
+Route::view('/services', 'client_new.services')->name('services');
+Route::view('/privacy-policy', 'client_new.privacy-policy')->name('privacy-policy');
 
 for ($i=1; $i <= 4; $i++) { 
     Route::view('/test/'. $i, 'test.' . $i);

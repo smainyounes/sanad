@@ -553,14 +553,14 @@
           </div>
       
           <!-- Filter Buttons -->
-          <div class="d-flex justify-content-center mb-4 gap-3">
+          {{-- <div class="d-flex justify-content-center mb-4 gap-3">
             <button class="btn btn-brand-primary rounded-pill px-6 py-2">الكل</button>
             <button class="btn btn-brand-outline rounded-pill px-6 py-2">حضوري</button>
             <button class="btn btn-brand-outline rounded-pill px-6 py-2">رقمي</button>
             <button class="btn btn-brand-outline rounded-pill px-6 py-2">نفسي</button>
             <button class="btn btn-brand-outline rounded-pill px-6 py-2">اجتماعي</button>
             <button class="btn btn-brand-outline rounded-pill px-6 py-2">مهني</button>
-          </div>
+          </div> --}}
       
           <!-- Program Cards -->
           <div class="row justify-content-center g-4">
