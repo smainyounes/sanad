@@ -14,8 +14,8 @@
               <p class="lead fw-semibold my-4" style="color: #d8b4fe;">مركز سند للتأهيل النفسي والاجتماعي والتمكين الاقتصادي للشباب</p>
               <p class="text-white-50 fs-5 mb-4">نحن هنا لندعمك في رحلتك نحو حياة أفضل. نقدم برامج متخصصة في التأهيل النفسي والاجتماعي، مع التركيز على تمكين الشباب اقتصاديًا لبناء مستقبل مشرق.</p>
               <div class="d-flex gap-3 flex-wrap">
-                <button class="btn btn-light rounded-pill px-4 py-3 fs-5" style="color: var(--sanad-purple-dark);">احجز جلسة الآن</button>
-                <button class="btn btn-outline-light rounded-pill px-4 py-3 fs-5">تعرف علينا</button>
+                <a href="{{ route('programs') }}" class="btn btn-light rounded-pill px-4 py-3 fs-5" style="color: var(--sanad-purple-dark);">احجز جلسة الآن</a>
+                <a href="{{ route('aboutus') }}" class="btn btn-outline-light rounded-pill px-4 py-3 fs-5">تعرف علينا</a>
               </div>
             </div>
             <div class="col-lg-6 d-none d-lg-block animate-float">

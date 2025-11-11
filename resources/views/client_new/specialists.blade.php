@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="mt-auto pt-3">
                                         @auth
-                                            <button type="button" class="btn btn-brand-primary w-100" data-bs-toggle="modal" data-bs-target="#reserveModal">
+                                            <button type="button" class="btn btn-brand-primary w-100" onclick="openReservationModal({{ $specialist->id }})">
                                                 حجز موعد
                                             </button>
                                         @else

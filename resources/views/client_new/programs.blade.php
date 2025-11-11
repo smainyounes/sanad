@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="d-grid mt-4">
                                         @auth
-                                            <button type="button" class="btn btn-brand-primary" data-bs-toggle="modal" data-bs-target="#reserveModal">
+                                            <button type="button" class="btn btn-brand-primary" onclick="openProgramReservationModal({{ $program->id }})">
                                                 حجز البرنامج
                                             </button>
                                         @else
