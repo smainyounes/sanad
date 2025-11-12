@@ -28,6 +28,13 @@ Route::post('/register', [ClientAuthController::class, 'register'])->middleware(
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('client.profile');
     Route::post('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('client.profile.update');
+
+    Route::get('/reservations', [\App\Http\Controllers\ClientReservationController::class, 'index'])
+    ->name('client.reservations.index');
+    Route::post('/reservations/program/update-status', [\App\Http\Controllers\ClientReservationController::class, 'updateStatusProgram'])
+    ->name('client.programReservations.updateStatus');
+    Route::post('/reservations/specialist/update-status', [\App\Http\Controllers\ClientReservationController::class, 'updateStatusSpec'])
+    ->name('client.specialistReservations.updateStatus');
 });
 
 

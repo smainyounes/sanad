@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class SpecialistController extends Controller
 {
@@ -23,13 +24,15 @@ class SpecialistController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'bio' => 'nullable|string',
+            'password' => 'confirmed',
             'speciality_id' => 'required|exists:specialities,id',
             'image' => 'nullable|image|max:2048',
         ]);
 
         $data = $request->only(['name', 'email', 'bio', 'speciality_id']);
         $data['type'] = 'specialist';
-
+        $data['password'] = Hash::make($request->password); 
+        
         if ($request->hasFile('image')) {
             $filename = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/specialists'), $filename);
@@ -59,14 +62,22 @@ class SpecialistController extends Controller
             'bio' => 'nullable|string',
             'speciality_id' => 'required|exists:specialities,id',
             'image' => 'nullable|image|max:2048',
+            'password' => 'nullable|string|min:6|confirmed',
         ]);
 
         $data = $request->only(['name', 'email', 'bio', 'speciality_id']);
 
+        // ✅ Update password only if provided
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        // ✅ Handle image upload
         if ($request->hasFile('image')) {
             if ($specialist->image && file_exists(public_path($specialist->image))) {
-                unlink(public_path($specialist->image));
+                @unlink(public_path($specialist->image)); // Suppress error if file missing
             }
+
             $filename = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/specialists'), $filename);
             $data['image'] = 'uploads/specialists/' . $filename;
@@ -74,8 +85,11 @@ class SpecialistController extends Controller
 
         $specialist->update($data);
 
-        return redirect()->route('admin.specialists.index')->with('success', 'تم تحديث الأخصائي بنجاح.');
+        return redirect()
+            ->route('admin.specialists.index')
+            ->with('success', 'تم تحديث الأخصائي بنجاح.');
     }
+
 
     public function destroy($id)
     {

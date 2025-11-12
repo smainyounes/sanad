@@ -65,16 +65,29 @@
                 <h5 class="modal-title" id="createSpecialistModalLabel">إضافة أخصائي</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
             </div>
+
             <div class="modal-body">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label">الاسم الكامل</label>
                         <input type="text" name="name" class="form-control" required>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label">البريد الإلكتروني</label>
                         <input type="email" name="email" class="form-control" required>
                     </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">كلمة المرور</label>
+                        <input type="password" name="password" class="form-control" required minlength="6" placeholder="أدخل كلمة المرور">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">تأكيد كلمة المرور</label>
+                        <input type="password" name="password_confirmation" class="form-control" required minlength="6" placeholder="أعد إدخال كلمة المرور">
+                    </div>
+
                     <div class="col-md-6">
                         <label class="form-label">التخصص</label>
                         <select name="speciality_id" class="form-select" required>
@@ -84,10 +97,12 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label">الصورة</label>
                         <input type="file" name="image" class="form-control" accept="image/*">
                     </div>
+
                     <div class="col-12">
                         <label class="form-label">السيرة</label>
                         <textarea name="bio" class="form-control" rows="3" placeholder="وصف مختصر..."></textarea>
