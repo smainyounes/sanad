@@ -108,7 +108,7 @@
             <!-- Visual Side (Reversed order in HTML for RTL) -->
             <div class="col-lg-6 d-none d-lg-flex auth-visual-side hero-gradient">
                 <div class="p-5 wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
-                    <img src="/images/logo-white.png" alt="Sanad Logo" class="animate-float mb-5" style="max-width: 150px;">
+                    <img src="/logo-white.png" alt="Sanad Logo" class="animate-float mb-5" style="max-width: 150px;">
                     <h1 class="display-5 mb-3">خطوتك الأولى نحو مستقبل مشرق</h1>
                     <p class="lead text-white-75">منصة سند هنا لمرافقتك في كل خطوة من رحلتك نحو الأمل والنجاح.</p>
                 </div>

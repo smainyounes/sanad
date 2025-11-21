@@ -3,7 +3,7 @@
     <div class="container-xxl">
         <div class="row g-4 mb-4">
             <div class="col-lg-3 col-md-6">
-                <img src="/logo.png" alt="سند" class="mb-3" style="height: 4rem;">
+                <img src="/logo-white.png" alt="سند" class="mb-3" style="height: 4rem;">
                 <p class="text-white-50">يد تمسك بك وقلب يحتويك</p>
             </div>
             <div class="col-lg-3 col-md-6">
