@@ -32,7 +32,7 @@
         <section id="specialists-grid" class="py-5">
             <div class="container">
                 <!-- FILTER BUTTONS -->
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" dir="ltr">
                     <div class="col-12 text-center filter-buttons mb-5 wow animate__animated animate__fadeInUp">
                         <div class="btn-group shadow-sm" role="group">
                             <button class="btn btn-primary px-4 py-2 fw-bold" data-filter="all">الكل</button>
@@ -48,7 +48,7 @@
                     @forelse($specialists as $specialist)
                         <div class="col-md-6 col-lg-4 specialist-item wow animate__animated animate__fadeInUp" data-category="speciality-{{ $specialist->speciality?->id ?? 'all' }}">
                             <div class="card card-hover border-0 shadow-sm h-100 rounded-4 text-center">
-                                <img src="{{ $specialist->image ? asset('storage/' . $specialist->image) : 'https://ui-avatars.com/api/?name=' . urlencode($specialist->name) . '&background=random&color=fff&size=280' }}"
+                                <img src="{{ $specialist->image ? asset($specialist->image) : 'https://ui-avatars.com/api/?name=' . urlencode($specialist->name) . '&background=random&color=fff&size=280' }}"
                                      class="card-img-top"
                                      alt="{{ $specialist->name }}">
 
