@@ -40,7 +40,7 @@
                                 <!-- Left Column: Profile Picture & Info -->
                                 <div class="col-lg-4 text-center d-flex flex-column align-items-center">
                                     <div class="profile-avatar-wrapper mb-3">
-                                        <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=667eea&color=fff&size=150' }}"
+                                        <img src="{{ $user->image ? asset($user->image) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=667eea&color=fff&size=150' }}"
                                              alt="Profile Image"
                                              class="rounded-circle profile-avatar">
                                     </div>
@@ -61,7 +61,6 @@
 
                                     <form action="{{ route('client.profile.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        @method('PATCH')
 
                                         <div class="mb-4">
                                             <label for="name" class="form-label fw-bold">الاسم الكامل</label>
